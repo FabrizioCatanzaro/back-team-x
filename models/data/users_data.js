@@ -1,47 +1,48 @@
-let users = [{
-    id: 'user1',
-    name: 'Lionel',
-    lastName: 'Messi',
-    age: '36',
-    email: 'lionelmessi@gmail.com',
-    password: 'thiagoymateo7',
-    code: 'papel-piedra-tijera',
-    verified: true,
-    logged: true
-},
-{
-    id: 'user2',
-    name: 'Rodrigo',
-    lastName: 'Palacio',
-    age: '37',
-    email: 'rodrigopalacio@gmail.com',
-    password: 'rodrigopalsd',
-    code: 'nutriapapelrio',
-    verified: true,
-    logged: true
-},
-{
-    id: 'user3',
-    name: 'Gonzalo',
-    lastName: 'Higuain',
-    age: '20',
-    email: 'pipitacrack@gmail.com',
-    password: 'hola1234',
-    code: 'bacnogalicia123',
-    verified: true,
-    logged: true
-},
-{
-    id: 'user4',
-    name: 'Emiliano',
-    lastName: 'Martinez',
-    age: '39',
-    email: 'eldibumartinez@gmail.com',
-    password: 'copaamerica21',
-    code: 'perrogatociencia',
-    verified: true,
-    logged: true
-},
+let admins = [
+    {
+        name: "Franco",
+        lastName: "Rodriguez",
+        photo:'https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg',
+        age:25,
+        email: "fran.rodriguez@gmail.com",
+        password: "Fran2020",
+        code: "ax20mt99ss21",
+        verified: true,
+        logged: true,
+    },
+    {
+        name: "Ignacio",
+        lastName: "Gonzalez",
+        photo:'https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg',
+        age:22,
+        email: "IgnaGonzalez@hotmail.com",
+        password: "Caramelo17",
+        code: "gg19fr10aqxc",
+        verified: true,
+        logged: true,
+    },
+    {
+        name: "Diego",
+        lastName: "Ramirez",
+        photo:'https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg',
+        age:30,
+        email: "dieguito_ramirez@gmail.com",
+        password: "DG2021",
+        code: "xx10cv12s887",
+        verified: true,
+        logged: true,
+    },
+    {
+        name: "Mauro",
+        lastName: "Rosas",
+        photo:'https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg',
+        age:22,
+        email: "MauR@gmail.com",
+        password: "Arboleda10*",
+        code: "b102hy2312mm",
+        verified: true,
+        logged: true,
+    }
 ]
 
 
@@ -51,9 +52,8 @@ require ('../../config/database/database')
 
 const user_model = require('../Model_User')
 
-users.forEach((element)=>{
+admins.forEach((element)=>{
     user_model.create({
-        id:element.id,
         name:element.name,
         lastName:element.lastName,
         age:element.age,
