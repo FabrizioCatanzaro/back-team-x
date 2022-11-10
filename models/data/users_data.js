@@ -45,7 +45,6 @@ let users = [{
 ]
 
 
-
 require ('dotenv').config()
 require ('../../config/database/database')
 
