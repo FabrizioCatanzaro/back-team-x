@@ -55,10 +55,11 @@ require ('dotenv').config()
 require ('../../config/database/database')
 
 
-const user_model = require('../Model_User')
+const User_model = require('../Model_User')
 
 admins.forEach((element)=>{
-    user_model.create({
+    User_model.create({
+        id:element.id,
         name:element.name,
         lastName:element.lastName,
         role:element.role,
@@ -71,4 +72,4 @@ admins.forEach((element)=>{
     })
 })
 
-module.exports = user_model
+module.exports = User_model

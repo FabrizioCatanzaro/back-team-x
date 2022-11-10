@@ -10,7 +10,6 @@ require('./config/database/database')
 
 var indexRouter = require('./routes/index');
 
-
 var app = express();
 
 // view engine setup
