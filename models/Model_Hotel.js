@@ -11,7 +11,6 @@ const schema_hotel = new mongoose.Schema({
 
 
 
-
 const model_hotel = mongoose.model('hotels', schema_hotel);
 
 module.exports = model_hotel
