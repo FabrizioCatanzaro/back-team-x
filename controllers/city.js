@@ -68,7 +68,31 @@ const controller = {
         } catch (error){
 
         }
+    },
+    one: async(req,res) => {
+        let { id } = req.params
+        try{
+            let uno = await City.find({ _id: id })
+            if(uno){
+                res.status(200).json({
+                    response: uno,
+                    success: true,
+                    message: "A city was obtain"
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "There are no cities"
+                })
+            }
+        } catch (error){
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
+        }
     }
+
 }
 
 module.exports = controller
