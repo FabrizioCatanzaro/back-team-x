@@ -38,6 +38,7 @@ const controller = {
                 success: false,
                 message: "Cannot find cities"
             })
+
         }
     },
     update: async(req,res) => {
