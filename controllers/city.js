@@ -1,3 +1,4 @@
+const { query } = require('express')
 const City = require ('../models/City')
 
 const controller = {
@@ -17,9 +18,26 @@ const controller = {
         }
     },
     read: async(req,res) => {
+        let { query } = req 
         try{
-
+            let all_cities = await City.find(query).populate("userId", "name")
+            if (all_cities.length !== 0){
+                res.status(200).json({
+                    response: all_cities,
+                    success: true,
+                    message: "Cities were found successfully"
+                    })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "Cannot find cities according to your search"
+                })
+            }
         } catch (error){
+            res.status(400).json({
+                success: false,
+                message: "Cannot find cities"
+            })
 
         }
     },
