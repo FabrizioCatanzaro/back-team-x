@@ -58,6 +58,8 @@ const hotelController = {
         }
     },
 
+    
+
     destroy: async (req,res) => {
         let {id_delete} = req.params
         try{

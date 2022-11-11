@@ -173,4 +173,7 @@ hotels.forEach((element)=>{
     })
 })
 
+
+
+
 module.exports = model_hotel

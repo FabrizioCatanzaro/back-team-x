@@ -5,6 +5,7 @@ let hotel = require('./hotel')
 
 router.use('/users', user)
 router.use('/cities', city)
+
 router.use('/hotels',hotel)
 
 module.exports = router;
