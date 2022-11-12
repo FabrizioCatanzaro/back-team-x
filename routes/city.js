@@ -1,5 +1,4 @@
 let router = require('express').Router()
-
 let { create, read, one, update, destroy } = require('../controllers/city')
 
 router.post('/', create)
