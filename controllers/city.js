@@ -1,4 +1,3 @@
-const { query } = require('express')
 const City = require ('../models/City')
 
 const controller = {
@@ -35,7 +34,7 @@ const controller = {
             }
         }
         try{
-            let all_cities = await City.find(query).populate("userId", "name")
+            let all_cities = await City.find(query).populate([{path: "userId", select:  "name lastName -_id"}])
             if (all_cities.length !== 0){
                 res.status(200).json({
                     response: all_cities,
@@ -72,7 +71,7 @@ const controller = {
     one: async(req,res) => {
         let { id } = req.params
         try{
-            let uno = await City.find({ _id: id })
+            let uno = await City.find({ _id: id }).populate([{ path:"userId", select: "name photo -_id"}])
             if(uno){
                 res.status(200).json({
                     response: uno,
@@ -92,7 +91,6 @@ const controller = {
             })
         }
     }
-
 }
 
 module.exports = controller
