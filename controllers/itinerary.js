@@ -62,10 +62,25 @@ const controller = {
         }
     },
     destroy: async(req,res) => {
+        let { id } = req.params
         try{
-
+            let oneIt = await Itinerary.findOneAndDelete({ _id: id })
+            if (oneIt){
+                res.status(200).json({
+                    success: true,
+                    message: "The itinerary was deleted with success"
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "Couldn't find that itinerary. Try again!"
+                })
+            }
         } catch (error) {
-
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
         }
     }
 }
