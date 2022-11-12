@@ -4,9 +4,17 @@ const Itinerary = require('../models/Itinerary')
 const controller = {
     create: async(req,res) => {
         try{
-
-        } catch (error) {
-            
+            let new_it = await Itinerary.create(req.body)
+            res.status(201).json({
+                id: new_it._id,
+                success: true,
+                message: "Congrats! The city was created with success"
+            })
+        } catch (error){
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
         }
     },
     read: async(req,res) => {
