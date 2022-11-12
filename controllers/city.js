@@ -18,7 +18,22 @@ const controller = {
         }
     },
     read: async(req,res) => {
-        let { query } = req 
+        let query = {}
+        if (req.query.name){
+            query = { name: req.query.name }
+        }
+        if (req.query.continent){
+            query = {
+                ...query,
+                continent: req.query.continent
+            }
+        }
+        if (req.query.population){
+            query = {
+                ...query,
+                population: req.query.population
+            }
+        }
         try{
             let all_cities = await City.find(query).populate("userId", "name")
             if (all_cities.length !== 0){
