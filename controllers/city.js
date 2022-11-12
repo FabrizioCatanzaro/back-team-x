@@ -79,10 +79,25 @@ const controller = {
         }
     },
     destroy: async(req,res) => {
+        let { id } = req.params
         try{
-
+            let oneCity = await City.findOneAndDelete({ _id: id })
+            if (oneCity){
+                res.status(200).json({
+                    success: true,
+                    message: "Ok. City was deleted succesfully."
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "I'm sorry! Cannot find that city"
+                })
+            }
         } catch (error){
-
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
         }
     },
     one: async(req,res) => {
