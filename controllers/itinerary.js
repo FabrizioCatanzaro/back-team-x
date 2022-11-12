@@ -8,13 +8,14 @@ const controller = {
             res.status(201).json({
                 id: new_it._id,
                 success: true,
-                message: "Congrats! The city was created with success"
+                message: "Congrats! The itinerary was created with success"
             })
         } catch (error){
             res.status(400).json({
                 success: false,
                 message: error.message
             })
+
         }
     },
     read: async(req,res) => {
@@ -37,9 +38,26 @@ const controller = {
         }
     },
     update: async(req,res) => {
+        let { id } = req.params
         try{
-
+            let oneIt = await Itinerary.findOneAndUpdate({ _id: id }, req.body, {new: true})
+            if (oneIt){
+                res.status(200).json({
+                    id: oneIt._id,
+                    success: true,
+                    message: "Well done! You have modified the itinerary"
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "Oh, some info is wrong. Try again!"
+                })
+            }
         } catch (error) {
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
 
         }
     },
