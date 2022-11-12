@@ -4,6 +4,7 @@ let city = require('./city')
 let itinerary = require('./itinerary')
 let hotel = require('./hotel')
 
+
 router.use('/users', user)
 router.use('/cities', city)
 router.use('/itineraries', itinerary)
