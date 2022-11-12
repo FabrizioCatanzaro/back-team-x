@@ -67,6 +67,7 @@ admins.forEach((element)=>{
         name:element.name,
         lastName:element.lastName,
         role:element.role,
+        photo:element.photo,
         age:element.age,
         email:element.email,
         password:element.password,

@@ -19,8 +19,21 @@ const hotelController = {
     },
 
     read: async (req,res) => {
+        let query = {}
+        let order ={}
+     
+        if(req.query.name){
+            query = {name: req.query.name}
+        }
+
+        if(req.query.order){
+            order = {capacity: req.query.order}
+        }
+
+        console.log(req.query)
+        
         try{
-            let find_req = await modelHotel.find()
+            let find_req = await modelHotel.find(query).sort(order)
             res.status(200).json({
                 response: find_req,
                 sucess:true,
