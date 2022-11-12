@@ -1,5 +1,5 @@
 let itineraries = [{
-    cityId: "636dca43b99a5c45429c7037",
+    cityId: "636eb11ccc137ffd592c01a9",
     name: "Christ by Train, Sugarloaf  & Lunch",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0a/cd/36/1a.jpg",
@@ -9,10 +9,10 @@ let itineraries = [{
     description: "Discover the best of Rio de Janeiro on this full-day guided tour with lunch. Take the Corcovado train up to the Christ the Redeemer statue, take a cable car ride up to the Sugarloaf Mountain and much more. This tour is also inclusive of a delicious barbecue buffet lunch at a local steakhouse.",
     price: 139,
     duration: 8,
-    userId: "636d291eda3415f91328a6b8",
+    userId: "636eb0776bbc5c9342f1749e",
 },
 {
-    cityId: "636dca43b99a5c45429c7037",
+    cityId: "636eb11ccc137ffd592c01a9",
     name: "Sailing Experience in Rio",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/06/e6/6a/a7.jpg",
@@ -22,10 +22,10 @@ let itineraries = [{
     description: "See two iconic Rio de Janeiro landmarks from the water—Christ the Redeemer and Sugar Loaf—while sailing aboard a 40-foot (12-meter) yacht. Sail in Guanabara Bay or the open sea while you relax with a welcome drink and snacks. Enjoy stunning views and discover the magic of sailing from the captain who illuminates Rio’s history.",
     price: 50,
     duration: 3,
-    userId: "636d291eda3415f91328a6b9",
+    userId: "636eb0776bbc5c9342f1749e",
 },
 {
-    cityId: "636dca43b99a5c45429c7038",
+    cityId: "636eb11ccc137ffd592c01aa",
     name: "Flamenco Show at Tablao Flamenco Cordobes Barcelona in Las Ramblas",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/06/6b/89/ed.jpg",
@@ -35,10 +35,10 @@ let itineraries = [{
     description: "A tablao is a dedicated flamenco performance venue and Tablao Flamenco Cordobes is considered Barcelona's best. With a heritage of more than 50 years and decor inspired by the dynasty that built the Alhambra, it draws stars of the art form from across Spain. Opt to watch the show with a drink or enjoy a comprehensive package with dinner in the adjacent restaurant plus unlimited beer, wine and soft drinks.",
     price: 44,
     duration: 2,
-    userId: "636d291eda3415f91328a6b7",
+    userId: "636eb0776bbc5c9342f1749e",
 },
 {
-    cityId: "636dca43b99a5c45429c7038",
+    cityId: "636eb11ccc137ffd592c01aa",
     name: "Park Guell and La Sagrada Familia Guided Tour",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/06/fb/99/73.jpg",
@@ -48,10 +48,10 @@ let itineraries = [{
     description: "Barcelona’s Park Guell and Sagrada Familia can both draw lines in excess of two or three hours. This skip-the-line, small-group tour lets you bypass the lines at both Gaudi creations, so you spend less time waiting and more experiencing the Catalan architect’s genius. Plus, rather than explore independently—and having to arrange travel between the two sites—you get a guide for extra insight and convenient transport laid on.",
     price: 99,
     duration: 4,
-    userId: "636d291eda3415f91328a6b6",
+    userId: "636eb0776bbc5c9342f1749f",
 },
 {
-    cityId: "636dca43b99a5c45429c703b",
+    cityId: "636eb11ccc137ffd592c01ad",
     name: "Whale-Watching Cruise Including Lunch or Breakfast",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/06/71/c3/a4.jpg",
@@ -61,10 +61,10 @@ let itineraries = [{
     description: "See Sydney’s sights by sea on a half-day whale-watching cruise. Avoid long lines at major attractions, enjoy great Sydney Harbour views, and spot whales and dolphins with informative commentary. This cruise is good for people who want to spend some time on the water and see native marine life in the wild, and experience the city’s landmarks away from the crowds.",
     price: 64,
     duration: 4,
-    userId: "636d291eda3415f91328a6b7",
+    userId: "636eb0776bbc5c9342f1749f",
 },
 {
-    cityId: "636dca43b99a5c45429c703b",
+    cityId: "636eb11ccc137ffd592c01ad",
     name: "Sydney Opera House Official Guided Walking Tour",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/06/86/f6/cf.jpg",
@@ -74,10 +74,10 @@ let itineraries = [{
     description: "This brief tour of the Sydney Opera House fits easily into any sightseeing schedule; it's a quick walk from Circular Quay. Go behind the scenes for an inside look at the World Heritage site's controversial construction, and enjoy photo ops from usually off-limits vantage points.",
     price: 28,
     duration: 1,
-    userId: "636d291eda3415f91328a6b9",
+    userId: "636eb0776bbc5c9342f1749f",
 },
 {
-    cityId: "636dca43b99a5c45429c703d",
+    cityId: "636eb11ccc137ffd592c01af",
     name: "Red Dunes ATV, Sandsurf, Camels, Stargazing & BBQ at Al Khayma Camp",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0b/24/ea/75.jpg",
@@ -87,10 +87,10 @@ let itineraries = [{
     description: "Experience several desert pursuits in one outing, including ATV-driving—something many tours only offer at an extra cost—on this red-dune desert tour from Dubai. Skip the hassle of transport and logistical planning; and be free to simply enjoy the dunes and activities provided. Zoom off on an ATV, ride a camel, go sandboarding; enjoy henna art and Arabian-costume photos; and conclude with a barbecue-buffet dinner and live shows.",
     price: 95,
     duration: 6,
-    userId: "636d291eda3415f91328a6b9",
+    userId: "636eb0776bbc5c9342f1749d",
 },
 {
-    cityId: "636dca43b99a5c45429c703d",
+    cityId: "636eb11ccc137ffd592c01af",
     name: "Hot Air Balloon Flight in Dubai with Breakfast, Falconry and Camel Ride",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0b/b3/81/6e.jpg",
@@ -100,10 +100,10 @@ let itineraries = [{
     description: "Enjoy three of Dubai’s most magical experiences with a combo package that saves you the hassle of booking each activity separately. You’ll benefit from unrivalled views of top Dubai landmarks such as the Burj Khalifa, Palm Islands and the World, and more during a sunrise hot-air balloon ride. Plus, you’ll ride a camel and get up close with a bird of prey during a falconry demonstration.",
     price: 335,
     duration: 5,
-    userId: "636d291eda3415f91328a6b8",
+    userId: "636eb0776bbc5c9342f1749d",
 },
 {
-    cityId: "636dca43b99a5c45429c703f",
+    cityId: "636eb11ccc137ffd592c01b1",
     name: "Safari Tour at Nairobi National Park",
     photo: [
         "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/84/4c/bf/caption.jpg?w=1200&h=-1&s=1",
@@ -113,10 +113,10 @@ let itineraries = [{
     description: "Spot free-roaming wildlife at the edge of Nairobi on a Nairobi National Park game drive in an open-top safari vehicle. An early-morning departure means cooler temperatures and the chance to see the animals when they’re most active, prowling grassy plains and acacia bush with the dramatic backdrop of city skyscrapers.",
     price: 50,
     duration: 5,
-    userId: "636d291eda3415f91328a6b6",
+    userId: "636eb0776bbc5c9342f1749d",
 },
 {
-    cityId: "636dca43b99a5c45429c703f",
+    cityId: "636eb11ccc137ffd592c01b1",
     name: "Elephant Orphanage and Giraffe Centre in Nairobi",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/06/ed/9d/42.jpg",
@@ -126,10 +126,10 @@ let itineraries = [{
     description: "Learn about two of Kenya's most famous animals on this tour to the David Sheldrick Elephant Orphanage and the Giraffe Centre. See the animals in a safe, contained environment focused on rehabilitation and conservation. This tour includes all entrance fees and private transportation for a hassle-free experience.",
     price: 90,
     duration: 6,
-    userId: "636d291eda3415f91328a6b7",
+    userId: "636eb0776bbc5c9342f1749c",
 },
 {
-    cityId: "636dca43b99a5c45429c7041",
+    cityId: "636eb11ccc137ffd592c01b3",
     name: "Colosseum Arena Floor, Roman Forum and Palatine Hill",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/09/f9/18/a6.jpg",
@@ -139,10 +139,10 @@ let itineraries = [{
     description: "Exclusive priority access tickets allow you to skip the line and enter the Colosseum through the Gladiator’s Gate. Experience this historic landmark from a unique perspective on the arena floor, a restricted access area. Learn about the history and culture of ancient Rome from your guide as you explore this iconic amphitheater.",
     price: 60,
     duration: 3,
-    userId: "636d291eda3415f91328a6b9",
+    userId: "636eb0776bbc5c9342f1749c",
 },
 {
-    cityId: "636dca43b99a5c45429c7041",
+    cityId: "636eb11ccc137ffd592c01b3",
     name: "Tour of the Vatican, Sistine Chapel & St. Peter's",
     photo: [
         "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/c5/7b/6b.jpg",
@@ -152,7 +152,7 @@ let itineraries = [{
     description: "If you’re not sure what you’re looking for, you can easily spend a day getting lost in the Vatican in Rome—not ideal if you’ve got limited time in Italy. Ensure you only see the best of the Vatican, and save hours waiting in line, on a skip-the-line tour that also includes access to St. Peter’s Basilica. Plus, a small group limited to 12 means you receive personalized attention.",
     price: 79,
     duration: 3,
-    userId: "636d291eda3415f91328a6b8",
+    userId: "636eb0776bbc5c9342f1749c",
 },
 ]
 
