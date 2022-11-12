@@ -56,10 +56,26 @@ const controller = {
         }
     },
     update: async(req,res) => {
+        let { id } = req.params
         try{
-
+            let oneCity = await City.findOneAndUpdate({ _id: id }, req.body,{new: true})
+            if (oneCity){
+                res.status(200).json({
+                    id: oneCity._id,
+                    success: true,
+                    message: "Great! You have modified the city"
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "Ooops, some info is wrong. Try again!"
+                })
+            }
         } catch (error){
-
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
         }
     },
     destroy: async(req,res) => {
