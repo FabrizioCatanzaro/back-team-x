@@ -15,6 +15,7 @@ const controller = {
                 success: false,
                 message: error.message
             })
+
         }
     },
     read: async(req,res) => {
@@ -57,6 +58,7 @@ const controller = {
                 success: false,
                 message: error.message
             })
+
         }
     },
     destroy: async(req,res) => {
