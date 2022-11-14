@@ -1,9 +1,9 @@
 let router = require('express').Router()
 
-let {read, one} = require('../controllers/controller_show')
+let {create, read, one} = require('../controllers/controller_show')
 
 
-
+router.post('/', create)
 router.get('/', read)
 router.get('/:id', one)
 
