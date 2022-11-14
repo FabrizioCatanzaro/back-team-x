@@ -53,7 +53,7 @@ const hotelController = {
                 res.status(200).json({
                     name: find_update.name,
                     sucess:true,
-                    message:`Usuario '${find_update.name}' encontrado y modificado`
+                    message:`Usuario '${find_update.name}' Hotel encontrado y modificado`
                 })
             }else{
                 res.status(404).json({
@@ -93,6 +93,7 @@ const hotelController = {
         }
     },
     
+
     
     one: async (req,res) =>{
         let {id} = req.params
