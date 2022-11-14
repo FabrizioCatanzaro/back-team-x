@@ -30,8 +30,6 @@ const hotelController = {
             order = {capacity: req.query.order}
         }
 
-        console.log(req.query)
-        
         try{
             let find_req = await modelHotel.find(query).sort(order)
             res.status(200).json({
@@ -70,9 +68,7 @@ const hotelController = {
             })
         }
     },
-
     
-
     destroy: async (req,res) => {
         let {id_delete} = req.params
         try{
@@ -96,6 +92,33 @@ const hotelController = {
             })
         }
     },
+    
+    one: async (req,res) =>{
+        let {id} = req.params
+        try{
+            let find_detail = await modelHotel.find({_id:id}).populate("userId", "name").populate()
+            if(find_detail){
+                res.status(201).json({
+                    user_find: find_detail,
+                    sucess:true,
+                    message:'Hotel encontrado con exito',
+                })
+            }
+            else{
+                res.status(404).json({
+                    user_find: false,
+                    sucess:false,
+                    message:'Hotel no encontrado. Intente nuevamente'
+                })
+            }
+        }catch(error){
+            res.status(404).json({
+                sucess:false,
+                message: error.message,
+            })
+        }
+    },
 }
+
 
 module.exports = hotelController;

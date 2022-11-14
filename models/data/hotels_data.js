@@ -1,6 +1,6 @@
 let hotels = [
     {
-        id: "hotel1",
+        id: "636e6131d28822aa7aa30375",
         name: "Hotel NH Buenos Aires City", 
         photo: [
             'https://upload.wikimedia.org/wikipedia/commons/a/a9/NH_City_Hotel.JPG',
