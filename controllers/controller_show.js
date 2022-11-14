@@ -2,6 +2,7 @@ const modelShow = require('../models/Model_Show');
 
 const showController = {
     
+    
     read: async (req,res) => {
         let query = {}
         if (req.query.hotelId){
@@ -22,6 +23,7 @@ const showController = {
         }
     },
 
+  
 
     one: async(req,res) => {
         let { id } = req.params

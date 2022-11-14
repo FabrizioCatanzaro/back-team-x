@@ -93,6 +93,7 @@ const hotelController = {
         }
     },
     
+    
     one: async (req,res) =>{
         let {id} = req.params
         try{
