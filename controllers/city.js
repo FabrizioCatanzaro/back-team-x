@@ -19,7 +19,10 @@ const controller = {
     read: async(req,res) => {
         let query = {}
         if (req.query.name){
-            query = { name: req.query.name }
+            query = {
+                ...query,
+                name: { $regex: req.query.name, $options: "i"}
+            }
         }
         if (req.query.continent){
             query = {
@@ -35,7 +38,7 @@ const controller = {
         }
         try{
             let all_cities = await City.find(query).populate([{path: "userId", select:  "name lastName -_id"}])
-            if (all_cities.length !== 0){
+            if (all_cities){
                 res.status(200).json({
                     response: all_cities,
                     success: true,
@@ -52,7 +55,6 @@ const controller = {
                 success: false,
                 message: "Cannot find cities"
             })
-
         }
     },
     update: async(req,res) => {
