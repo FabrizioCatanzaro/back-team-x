@@ -19,7 +19,6 @@ const showController = {
         }
     },
     
-    
     read: async (req,res) => {
         let query = {}
         if (req.query.hotelId){
@@ -63,9 +62,7 @@ const showController = {
             })
         }
     },
-
-  
-
+    
     one: async(req,res) => {
         let { id } = req.params
         try{
@@ -86,6 +83,30 @@ const showController = {
             res.status(400).json({
                 success: false,
                 message: error.message
+            })
+        }
+    },
+
+    destroy: async (req,res) => {
+        let {id_delete} = req.params
+        try{
+            let find_delete = await modelShow.findOneAndDelete({_id:id_delete})
+            if(find_delete){
+                res.status(200).json({
+                    delete: find_delete.name,
+                    sucess:true,
+                    message: 'Show eliminado con exito'
+                })
+            }else{
+                res.status(404).json({
+                    sucess:false,
+                    message:'Show no encontrado',
+                })
+            }
+        }catch(error){
+            res.status(404).json({
+                sucess:false,
+                message: error.message,
             })
         }
     },
