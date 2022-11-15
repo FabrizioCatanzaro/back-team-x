@@ -162,6 +162,7 @@ require ('../../config/database/database')
 
 const model_hotel = require('../Model_Hotel')
 
+
 hotels.forEach((element)=>{
     model_hotel.create({
         name:element.name,

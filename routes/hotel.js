@@ -2,8 +2,6 @@ let router = require('express').Router()
 
 let {create, read, update, destroy, one} = require('../controllers/controller_hotel');
 
-
-
 router.post('/', create)
 router.get('/', read)
 router.patch('/:id_update', update)
