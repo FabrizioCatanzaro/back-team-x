@@ -1,6 +1,23 @@
 const modelShow = require('../models/Model_Show');
 
 const showController = {
+
+    create: async (req,res) => {
+        try{
+            let new_hotel = await modelShow.create(req.body)
+            res.status(201).json({
+                id: new_hotel._id,
+                sucess:true,
+                message:'El show se creo exitosamente',
+            })
+        }catch(error){
+            res.status(400).json({
+                sucess:false,
+                message:'Ocurrio un error. Intente nuevamente',
+                message_error: error.message
+            })
+        }
+    },
     
     
     read: async (req,res) => {
