@@ -8,12 +8,12 @@ const showController = {
             res.status(201).json({
                 id: new_hotel._id,
                 sucess:true,
-                message:'El show se creo exitosamente',
+                message:'The show was created successfully',
             })
         }catch(error){
             res.status(400).json({
                 sucess:false,
-                message:'Ocurrio un error. Intente nuevamente',
+                message:'An error occurred. Try again',
                 message_error: error.message
             })
         }
@@ -25,7 +25,7 @@ const showController = {
             query = { hotelId: req.query.hotelId }
         }
         try{
-            let all_shows = await modelShow.find(query)
+            let all_shows = await modelShow.find(query).populate([{ path:"userId", select: "name photo -_id"}]).populate([{ path:"hotelId", select: "name -_id"}])
             res.status(200).json({
                 response: all_shows,
                 success: true,
@@ -40,19 +40,19 @@ const showController = {
     },
 
     update: async (req,res) => {
-        let {id_update} = req.params
+        let {id} = req.params
         try{
-            let find_update = await modelShow.findOneAndUpdate({_id:id_update}, req.body, {new:true})
+            let find_update = await modelShow.findOneAndUpdate({_id:id}, req.body, {new:true})
             if(find_update){
                 res.status(200).json({
                     name: find_update.name,
                     sucess:true,
-                    message:`Usuario '${find_update.name}' Show encontrado y modificado`
+                    message:`Show found and modified!`
                 })
             }else{
                 res.status(404).json({
                     sucess:false,
-                    message:'Show no encontrado lamentablemente'
+                    message:'Show not found sorry'
                 })
             }
         }catch(error){
@@ -66,7 +66,7 @@ const showController = {
     one: async(req,res) => {
         let { id } = req.params
         try{
-            let uno = await modelShow.find({ _id: id })
+            let uno = await modelShow.find({ _id: id }).populate([{ path:"userId", select: "name photo -_id"}]).populate([{ path:"hotelId", select: "name -_id"}])
             if(uno){
                 res.status(200).json({
                     response: uno,
@@ -88,19 +88,19 @@ const showController = {
     },
 
     destroy: async (req,res) => {
-        let {id_delete} = req.params
+        let {id} = req.params
         try{
-            let find_delete = await modelShow.findOneAndDelete({_id:id_delete})
+            let find_delete = await modelShow.findOneAndDelete({_id:id})
             if(find_delete){
                 res.status(200).json({
                     delete: find_delete.name,
                     sucess:true,
-                    message: 'Show eliminado con exito'
+                    message: 'Show deleted successfully'
                 })
             }else{
                 res.status(404).json({
                     sucess:false,
-                    message:'Show no encontrado',
+                    message:'Show not found',
                 })
             }
         }catch(error){
