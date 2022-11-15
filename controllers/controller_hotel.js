@@ -8,7 +8,7 @@ const hotelController = {
             res.status(201).json({
                 id: new_hotel._id,
                 sucess:true,
-                message:'El usuario se creo exitosamente',
+                message:'The Hotel was created successfully',
             })
         }catch(error){
             res.status(400).json({
@@ -37,34 +37,34 @@ const hotelController = {
         }
 
         try{
-            let find_req = await modelHotel.find(query).sort(order)
+            let find_req = await modelHotel.find(query).sort(order).populate([{ path:"userId", select: "name photo -_id"}]).populate([{ path:"citiId", select: "name -_id"}])
             res.status(200).json({
                 response: find_req,
                 sucess:true,
-                message:'Hotel encontrando con exito'
+                message:'Hotel finding successfully'
             })
         }catch(error){
             res.status(404).json({
                 sucess:false,
-                message:'Hotel no encontrado. Intenta nuevamente'
+                message:'Hotel not found. Try again'
             })
         }
     },
 
     update: async (req,res) => {
-        let {id_update} = req.params
+        let {id} = req.params
         try{
-            let find_update = await modelHotel.findOneAndUpdate({_id:id_update}, req.body, {new:true})
+            let find_update = await modelHotel.findOneAndUpdate({_id:id}, req.body, {new:true})
             if(find_update){
                 res.status(200).json({
                     name: find_update.name,
                     sucess:true,
-                    message:`Usuario '${find_update.name}' Hotel encontrado y modificado`
+                    message:`Hotel found and modified`
                 })
             }else{
                 res.status(404).json({
                     sucess:false,
-                    message:'Hotel no encontrado lamentablemente'
+                    message:'Hotel not found unfortunately'
                 })
             }
         }catch(error){
@@ -76,19 +76,19 @@ const hotelController = {
     },
     
     destroy: async (req,res) => {
-        let {id_delete} = req.params
+        let {id} = req.params
         try{
-            let find_delete = await modelHotel.findOneAndDelete({_id:id_delete})
+            let find_delete = await modelHotel.findOneAndDelete({_id:id})
             if(find_delete){
                 res.status(200).json({
                     delete: find_delete.name,
                     sucess:true,
-                    message: 'Usuario eliminado con exito'
+                    message: 'Hotel removed successfully'
                 })
             }else{
                 res.status(404).json({
                     sucess:false,
-                    message:'Usuario no encontrado',
+                    message:'Hotel not found',
                 })
             }
         }catch(error){
@@ -102,19 +102,19 @@ const hotelController = {
     one: async (req,res) =>{
         let {id} = req.params
         try{
-            let find_detail = await modelHotel.find({_id:id}).populate("userId", "name").populate()
+            let find_detail = await modelHotel.find({_id:id}).populate("userId", "name")
             if(find_detail){
                 res.status(201).json({
                     user_find: find_detail,
                     sucess:true,
-                    message:'Hotel encontrado con exito',
+                    message:'Hotel found successfully',
                 })
             }
             else{
                 res.status(404).json({
                     user_find: false,
                     sucess:false,
-                    message:'Hotel no encontrado. Intente nuevamente'
+                    message:'Hotel not found. Try again'
                 })
             }
         }catch(error){
