@@ -37,7 +37,7 @@ const controller = {
             }
         }
         try{
-            let all_cities = await City.find(query).populate([{path: "userId", select:  "name lastName -_id"}])
+            let all_cities = await City.find(query).populate([{path: "userId", select:  "name photo -_id"}])
             if (all_cities){
                 res.status(200).json({
                     response: all_cities,
@@ -125,29 +125,6 @@ const controller = {
             })
         }
     },
-    one: async(req,res) => {
-        let { id } = req.params
-        try{
-            let uno = await City.find({ _id: id }).populate([{ path:"userId", select: "name photo -_id"}])
-            if(uno){
-                res.status(200).json({
-                    response: uno,
-                    success: true,
-                    message: "A city was obtain"
-                })
-            } else {
-                res.status(404).json({
-                    success: false,
-                    message: "There are no cities"
-                })
-            }
-        } catch (error){
-            res.status(400).json({
-                success: false,
-                message: error.message
-            })
-        }
-    }
 }
 
 module.exports = controller

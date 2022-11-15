@@ -8,7 +8,7 @@ let hotels = [
         ],
         capacity: 45000,
         description:"This luxury hotel is housed in a 1930s art deco building, a 1-minute walk from the nearest bus stop, a 5-minute walk from the Casa Rosada and 2 km from the live performances at the Teatro Colón.",
-        citiId: "6372ff7e1f2df6469dfdf853",
+        citiId: "636eb11ccc137ffd592c01a8",
         userId:"6372d48e597d27b935de7569",
     },
     {
@@ -20,7 +20,7 @@ let hotels = [
         ],
         capacity: 62000,
         description:"Brisa Barra Hotel has swimming pools for adults and children and is located in front of Barra da Tijuca Beach. It includes a gym, restaurant and dry and steam sauna.",
-        citiId: "6372ff7e1f2df6469dfdf854",
+        citiId: "636eb11ccc137ffd592c01a9",
         userId:"6372d48e597d27b935de7568",
     },
     {
@@ -32,7 +32,7 @@ let hotels = [
         ],
         capacity: 39000,
         description:"Get ready to live a unique experience in one of the most special and exclusive hotels in all of Barcelona. Art&Drinks, at the Hotel El Palace in Barcelona, offers you the opportunity to attend a beautiful illustration workshop",
-        citiId: "6372ff7e1f2df6469dfdf855",
+        citiId: "636eb11ccc137ffd592c01aa",
         userId:"6372d48e597d27b935de7569",
     },
     {
@@ -44,7 +44,7 @@ let hotels = [
         ],
         capacity:5000,
         description:"We're located 10 kilometers from Istanbul Airport and 30 minutes from the Mall of Istanbul with its shops, restaurants, and cinema. Vialand Theme Park is a 35-minute drive",
-        citiId: "6372ff7e1f2df6469dfdf856",
+        citiId: "636e5fab4931696280c0dad0",
         userId:"6372d48e597d27b935de7568",
     }
     ,{
@@ -56,7 +56,7 @@ let hotels = [
         ],
         capacity: 43000,
         description:"Located in the center of Saint Petersburg, this boutique hotel offers free Wi-Fi, a restaurant and a heated outdoor pool with a bar. The Dalí Museum is 1.6 km away.",
-        citiId: "6372ff7e1f2df6469dfdf857",
+        citiId: "636eb11ccc137ffd592c01ac",
         userId:"6372d48e597d27b935de7569",
     }
     ,{
@@ -69,7 +69,7 @@ let hotels = [
         ],
         capacity: 75000,
         description:"Star City Casino Wharf is located West of the Sydney Harbour Bridge just on Pyrmont Bay.",
-        citiId: "6372ff7e1f2df6469dfdf858",
+        citiId: "636eb11ccc137ffd592c01ad",
         userId:"6372d48e597d27b935de7568",
     },
     {
@@ -82,7 +82,7 @@ let hotels = [
         ],
         capacity: 80000,
         description:"Located in a lively area filled with shops and restaurants, this low-key hotel is a 5-minute walk from Shinjuku Train Station, 2 km from Shinjuku Gyoen National Garden and Meiji Jingu, a Shinto shrine.",
-        citiId: "6372ff7e1f2df6469dfdf859",
+        citiId: "636eb11ccc137ffd592c01ae",
         userId:"6372d48e597d27b935de756b",
     },
     {
@@ -95,7 +95,7 @@ let hotels = [
         ],
         capacity: 90000,
         description:"El Sheraton Mall of the Emirates Hotel, Dubai comunica directamente con el centro comercial Mall of the Emirates y está a 20 minutos en auto del aeropuerto internacional DXB y de la Expo 2020.",
-        citiId: "6372ff7e1f2df6469dfdf85a",
+        citiId: "636eb11ccc137ffd592c01af",
         userId:"6372d48e597d27b935de756b",
     },
     {
@@ -120,7 +120,7 @@ let hotels = [
         ],
         capacity: 41000,
         description:"This contemporary and luxurious hotel is located in the commercial district, 4.8 km from the Nairobi Arboretum and 17 km from the Nairobi National Park.",
-        citiId: "6372ff7e1f2df6469dfdf85c",
+        citiId: "636eb11ccc137ffd592c01b1",
         userId:"6372d48e597d27b935de756a",
     },
     {
@@ -133,7 +133,7 @@ let hotels = [
         ],
         capacity: 28000,
         description:"The Cairo International Conference Centre ( CICC ) is the only comprehensive conference centre in the country.",
-        citiId: "6372ff7e1f2df6469dfdf85d",
+        citiId: "636eb11ccc137ffd592c01b2",
         userId:"6372d48e597d27b935de756a",
     },
     {
@@ -146,7 +146,7 @@ let hotels = [
         ],
         capacity: 32000,
         description:"This hotel is located just off the Grande Raccordo Anulare ring road, 16 km from central monuments such as the Trevi Fountain and the Pantheon.",
-        citiId: "6372ff7e1f2df6469dfdf85e",
+        citiId: "636eb11ccc137ffd592c01b3",
         userId:"6372d48e597d27b935de756a",
     }
 ]
