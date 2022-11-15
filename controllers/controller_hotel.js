@@ -23,11 +23,17 @@ const hotelController = {
         let order ={}
      
         if(req.query.name){
-            query = {name: req.query.name}
+            query = {
+                ...query,
+                name:{$regex: req.query.name, $options:"i"}
+            }
         }
 
         if(req.query.order){
-            order = {capacity: req.query.order}
+            order = {
+                ...query,
+                capacity: req.query.order
+            }
         }
 
         try{
