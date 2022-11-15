@@ -7,7 +7,7 @@ let admins = [
         age:25,
         email: "fran.rodriguez@gmail.com",
         password: "Fran2020",
-        country:"España",
+        country:"EspaÃ±a",
         code: "ax20mt99ss21",
         verified: true,
         logged: true,

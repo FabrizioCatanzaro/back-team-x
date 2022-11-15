@@ -1,6 +1,5 @@
 let hotels = [
     {
-        id: "636e6131d28822aa7aa30375",
         name: "Hotel NH Buenos Aires City", 
         photo: [
             'https://upload.wikimedia.org/wikipedia/commons/a/a9/NH_City_Hotel.JPG',
@@ -9,11 +8,10 @@ let hotels = [
         ],
         capacity: 45000,
         description:"This luxury hotel is housed in a 1930s art deco building, a 1-minute walk from the nearest bus stop, a 5-minute walk from the Casa Rosada and 2 km from the live performances at the Teatro Colón.",
-        citiId: "636e5fab4931696280c0dacd",
-        userId:"636d291eda3415f91328a6b8",
+        citiId: "6372ff7e1f2df6469dfdf853",
+        userId:"6372d48e597d27b935de7569",
     },
     {
-        id: "hotel2",
         name: "Hotel Brisa Barra",
         photo: [
             'https://rialehoteis.com.br/wp-content/uploads/2022/01/brisa_barra-_029.jpg',
@@ -22,11 +20,10 @@ let hotels = [
         ],
         capacity: 62000,
         description:"Brisa Barra Hotel has swimming pools for adults and children and is located in front of Barra da Tijuca Beach. It includes a gym, restaurant and dry and steam sauna.",
-        citiId: "636e5fab4931696280c0dace",
-        userId:"636d291eda3415f91328a6b9",
+        citiId: "6372ff7e1f2df6469dfdf854",
+        userId:"6372d48e597d27b935de7568",
     },
     {
-        id: "hotel3",
         name: "Hotel El Palace Barcelona", 
         photo: [
             'https://static.hoteltreats.com/site/styles/microsite_hero/s3/2021-02/fachada-Hotel-El-Palace-Barcelona-compress-image.jpg?h=277ddade&itok=uxr2cRjv',
@@ -35,11 +32,10 @@ let hotels = [
         ],
         capacity: 39000,
         description:"Get ready to live a unique experience in one of the most special and exclusive hotels in all of Barcelona. Art&Drinks, at the Hotel El Palace in Barcelona, offers you the opportunity to attend a beautiful illustration workshop",
-        citiId: "636e5fab4931696280c0dacf",
-        userId:"636d291eda3415f91328a6b7",
+        citiId: "6372ff7e1f2df6469dfdf855",
+        userId:"6372d48e597d27b935de7569",
     },
     {
-        id: "hotel4",
         name: "Hotel Hampton by Hilton Istanbul Arnavutkoy",
         photo: [
             'https://www.bilginconsulting.com/wp-content/uploads/2020/12/Screen-Shot-2020-11-20-at-10.36.10-1170x650.png',
@@ -48,11 +44,10 @@ let hotels = [
         ],
         capacity:5000,
         description:"We're located 10 kilometers from Istanbul Airport and 30 minutes from the Mall of Istanbul with its shops, restaurants, and cinema. Vialand Theme Park is a 35-minute drive",
-        citiId: "636e5fab4931696280c0dad0",
-        userId:"636d291eda3415f91328a6b9",
+        citiId: "6372ff7e1f2df6469dfdf856",
+        userId:"6372d48e597d27b935de7568",
     }
     ,{
-        id: "hotel5",
         name: "Hotel Hollander - Downtown St. Petersburg",
         photo: [
             'https://myareanetwork-photos.s3.amazonaws.com/bizlist_photos/f/196037_1488032547.jpg?0',
@@ -61,11 +56,11 @@ let hotels = [
         ],
         capacity: 43000,
         description:"Located in the center of Saint Petersburg, this boutique hotel offers free Wi-Fi, a restaurant and a heated outdoor pool with a bar. The Dalí Museum is 1.6 km away.",
-        citiId: "636e5fab4931696280c0dad1",
-        userId:"636d291eda3415f91328a6b8",
+        citiId: "6372ff7e1f2df6469dfdf857",
+        userId:"6372d48e597d27b935de7569",
     }
     ,{
-        id: "hotel6", 
+
         name: "Casino Wharf • Pyrmont, NSW",
         photo: [
             'https://www.architectureanddesign.com.au/getmedia/ebb3905a-6106-43e8-9b03-4c6667e7eda2/101203complete480.aspx?&ext=.jpg',
@@ -74,11 +69,11 @@ let hotels = [
         ],
         capacity: 75000,
         description:"Star City Casino Wharf is located West of the Sydney Harbour Bridge just on Pyrmont Bay.",
-        citiId: "636e5fab4931696280c0dad2",
-        userId:"636d291eda3415f91328a6b6",
+        citiId: "6372ff7e1f2df6469dfdf858",
+        userId:"6372d48e597d27b935de7568",
     },
     {
-        id: "hotel7", 
+
         name: "Hotel Kadoya - Tokio",
         photo: [
             'https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_627,q_auto,w_1200/itemimages/10/28/1028662_v3.jpeg',
@@ -87,11 +82,11 @@ let hotels = [
         ],
         capacity: 80000,
         description:"Located in a lively area filled with shops and restaurants, this low-key hotel is a 5-minute walk from Shinjuku Train Station, 2 km from Shinjuku Gyoen National Garden and Meiji Jingu, a Shinto shrine.",
-        citiId: "636e5fab4931696280c0dad3",
-        userId:"636d291eda3415f91328a6b9",
+        citiId: "6372ff7e1f2df6469dfdf859",
+        userId:"6372d48e597d27b935de756b",
     },
     {
-        id: "hotel8", 
+
         name: "Hotel Sheraton Mall of the Emirates, Dubai",
         photo: [
             'https://www.mydubai.com.au/wp-content/uploads/sites/23/2018/07/sheraton-dubai-mall-of-the-emirates-1.jpg',
@@ -100,11 +95,10 @@ let hotels = [
         ],
         capacity: 90000,
         description:"El Sheraton Mall of the Emirates Hotel, Dubai comunica directamente con el centro comercial Mall of the Emirates y está a 20 minutos en auto del aeropuerto internacional DXB y de la Expo 2020.",
-        citiId: "636e5fab4931696280c0dad4",
-        userId:"636d291eda3415f91328a6b8",
+        citiId: "6372ff7e1f2df6469dfdf85a",
+        userId:"6372d48e597d27b935de756b",
     },
     {
-        id: "hotel9",
         name: "Hotel The Theatre at Ace",
         photo: [
             'https://d3emaq2p21aram.cloudfront.net/media/cache/venue_carousel/uploads/2017/03/the-theatre-at-ace-hotel-15.jpg',
@@ -113,11 +107,11 @@ let hotels = [
         ],
         capacity: 53000,
         description:"Our loving reanimation of the former flagship movie house of United Artists, The Theatre serves Los Angeles' ",
-        citiId: "636e5fab4931696280c0dad5",
-        userId:"636d291eda3415f91328a6b7",
+        citiId: "636eb11ccc137ffd592c01b0",
+        userId:"6372d48e597d27b935de756b",
     },
     {
-        id: "hotel10", 
+    
         name: "Hotel Radisson Blu, Nairobi Upper Hill",
         photo: [
             'https://images.trvl-media.com/lodging/13000000/12010000/12009800/12009760/261519ca.jpg?impolicy=resizecrop&rw=670&ra=fit',
@@ -126,11 +120,11 @@ let hotels = [
         ],
         capacity: 41000,
         description:"This contemporary and luxurious hotel is located in the commercial district, 4.8 km from the Nairobi Arboretum and 17 km from the Nairobi National Park.",
-        citiId: "636e5fab4931696280c0dad6",
-        userId:"636d291eda3415f91328a6b6",
+        citiId: "6372ff7e1f2df6469dfdf85c",
+        userId:"6372d48e597d27b935de756a",
     },
     {
-        id: "hotel11", 
+    
         name: "Hotel Sheraton Charles de Gaulle, Ad Doqi A.Dokki",
         photo: [
             'https://cache.marriott.com/content/dam/marriott-renditions/PARSI/parsi-aerial-view-0233-hor-feat.jpg',
@@ -139,11 +133,11 @@ let hotels = [
         ],
         capacity: 28000,
         description:"The Cairo International Conference Centre ( CICC ) is the only comprehensive conference centre in the country.",
-        citiId: "636e5fab4931696280c0dad7",
-        userId:"636d291eda3415f91328a6b6",
+        citiId: "6372ff7e1f2df6469dfdf85d",
+        userId:"6372d48e597d27b935de756a",
     },
     {
-        id: "hotel12", 
+    
         name: "Hotel Papillo Roma",
         photo: [
             'https://cf.bstatic.com/xdata/images/hotel/max1024x768/24317764.jpg?k=21fc01eca1b6e1759b8775c58fc96346326ae9a638b9452423fc60796445cc62&o=&hp=1',
@@ -152,8 +146,8 @@ let hotels = [
         ],
         capacity: 32000,
         description:"This hotel is located just off the Grande Raccordo Anulare ring road, 16 km from central monuments such as the Trevi Fountain and the Pantheon.",
-        citiId: "636e5fab4931696280c0dad8",
-        userId:"636d291eda3415f91328a6b7",
+        citiId: "6372ff7e1f2df6469dfdf85e",
+        userId:"6372d48e597d27b935de756a",
     }
 ]
 
