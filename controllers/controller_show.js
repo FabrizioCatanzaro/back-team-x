@@ -40,6 +40,30 @@ const showController = {
         }
     },
 
+    update: async (req,res) => {
+        let {id_update} = req.params
+        try{
+            let find_update = await modelShow.findOneAndUpdate({_id:id_update}, req.body, {new:true})
+            if(find_update){
+                res.status(200).json({
+                    name: find_update.name,
+                    sucess:true,
+                    message:`Usuario '${find_update.name}' Show encontrado y modificado`
+                })
+            }else{
+                res.status(404).json({
+                    sucess:false,
+                    message:'Show no encontrado lamentablemente'
+                })
+            }
+        }catch(error){
+            res.status(404).json({
+                sucess:false,
+                message: error.message,
+            })
+        }
+    },
+
   
 
     one: async(req,res) => {
