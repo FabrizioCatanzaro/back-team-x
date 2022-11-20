@@ -7,13 +7,13 @@ const request = require('supertest')
 describe('GET /api/cities', function(){
 
     // It -> test cases
-    it('Deberia ser un array de objetos', function(done){
+    it('Should be an array of objects', function(done){
         
         request(app)
             .get('/api/cities/')
             .expect(response => {
-                assert.typeOf(response.body.response, 'array', 'Deberia ser un array')
-                assert.typeOf(response.body.response[0], 'object', 'Deberian ser objetos')
+                assert.typeOf(response.body.response, 'array', 'Should be an array')
+                assert.typeOf(response.body.response[0], 'object', 'Should be objects')
             })
             .end(function(err, res){
                 if (err){
