@@ -7,7 +7,8 @@ const controller = {
             res.status(201).json({
                 id: new_city._id,
                 success: true,
-                message: "Congrats! The city was created with success"
+                message: "Congrats! The city was created with success",
+                body: new_city
             })
         } catch (error){
             res.status(400).json({
