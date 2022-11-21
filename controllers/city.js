@@ -37,8 +37,14 @@ const controller = {
                 population: req.query.population
             }
         }
+        if (req.query.userId){
+            query = {
+                ...query,
+                userId: req.query.userId
+            }
+        }
         try{
-            let all_cities = await City.find(query).populate([{path: "userId", select:  "name photo -_id"}])
+            let all_cities = await City.find(query).populate([{path: "userId", select:  "_id"}])
             if (all_cities){
                 res.status(200).json({
                     response: all_cities,
