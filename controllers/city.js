@@ -7,7 +7,8 @@ const controller = {
             res.status(201).json({
                 id: new_city._id,
                 success: true,
-                message: "Congrats! The city was created with success"
+                message: "Congrats! The city was created with success",
+                body: new_city
             })
         } catch (error){
             res.status(400).json({
@@ -36,8 +37,14 @@ const controller = {
                 population: req.query.population
             }
         }
+        if (req.query.userId){
+            query = {
+                ...query,
+                userId: req.query.userId
+            }
+        }
         try{
-            let all_cities = await City.find(query).populate([{path: "userId", select:  "name photo -_id"}])
+            let all_cities = await City.find(query).populate([{path: "userId", select:  "_id"}])
             if (all_cities){
                 res.status(200).json({
                     response: all_cities,

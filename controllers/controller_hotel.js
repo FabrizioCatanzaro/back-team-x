@@ -7,9 +7,9 @@ const hotelController = {
             let new_hotel = await modelHotel.create(req.body)
             res.status(201).json({
                 id: new_hotel._id,
-                sucess:true,
+                success:true,
                 message:'The Hotel was created successfully',
-                capacity:new_hotel.capacity
+                body: new_hotel
             })
         }catch(error){
             res.status(400).json({
