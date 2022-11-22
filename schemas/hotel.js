@@ -34,7 +34,17 @@ const schema = joi.object({
             "number.empty": "you can't leave this field empty",
             "number.base": "only numbers are valid"
         }),
-    cityId: joi
+        description: joi
+        .string()
+        .required()
+        .min(15)
+        .max(50)
+        .messages({
+            "string.required": "the field is required, please enter an ID",
+            "string.empty": "you can't leave this field empty",
+            "string.base": "only letters and numbers are valid"
+        }),
+    citiId: joi
         .string()
         .required()
         .messages({
