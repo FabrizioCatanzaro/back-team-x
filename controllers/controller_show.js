@@ -7,7 +7,7 @@ const showController = {
             let new_hotel = await modelShow.create(req.body)
             res.status(201).json({
                 id: new_hotel._id,
-                sucess:true,
+                success:true,
                 message:'The show was created successfully',
             })
         }catch(error){
@@ -21,9 +21,15 @@ const showController = {
     
     read: async (req,res) => {
         let query = {}
+
         if (req.query.hotelId){
             query = { hotelId: req.query.hotelId }
         }
+
+        if (req.query.userId){
+            query = { userId: req.query.userId}
+        }
+
         try{
             let all_shows = await modelShow.find(query).populate([{ path:"userId", select: "name photo -_id"}]).populate([{ path:"hotelId", select: "name -_id"}])
             res.status(200).json({
@@ -46,12 +52,12 @@ const showController = {
             if(find_update){
                 res.status(200).json({
                     name: find_update.name,
-                    sucess:true,
+                    success:true,
                     message:`Show found and modified!`
                 })
             }else{
                 res.status(404).json({
-                    sucess:false,
+                    success:false,
                     message:'Show not found sorry'
                 })
             }
@@ -94,7 +100,7 @@ const showController = {
             if(find_delete){
                 res.status(200).json({
                     delete: find_delete.name,
-                    sucess:true,
+                    success:true,
                     message: 'Show deleted successfully'
                 })
             }else{
@@ -105,7 +111,7 @@ const showController = {
             }
         }catch(error){
             res.status(404).json({
-                sucess:false,
+                success:false,
                 message: error.message,
             })
         }

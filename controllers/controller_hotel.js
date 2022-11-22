@@ -1,3 +1,4 @@
+const { query } = require('express');
 const modelHotel = require('../models/Model_Hotel');
 
 const hotelController = {
@@ -21,7 +22,7 @@ const hotelController = {
 
     read: async (req,res) => {
         let query = {}
-        let order ={}
+        let order = {}
      
         if(req.query.name){
             query = {
@@ -33,6 +34,13 @@ const hotelController = {
         if(req.query.order){
             order = {capacity: req.query.order}
         }
+
+        if(req.query.userId){
+            query = {
+            ...query,
+            userId:req.query.userId
+        }
+    }
 
         try{
             let find_req = await modelHotel.find(query).sort(order)
@@ -56,7 +64,7 @@ const hotelController = {
             if(find_update){
                 res.status(200).json({
                     name: find_update.name,
-                    sucess:true,
+                    success:true,
                     message:`Hotel found and modified`
                 })
             }else{
@@ -80,7 +88,7 @@ const hotelController = {
             if(find_delete){
                 res.status(200).json({
                     delete: find_delete.name,
-                    sucess:true,
+                    success:true,
                     message: 'Hotel removed successfully'
                 })
             }else{
