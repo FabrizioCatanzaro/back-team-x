@@ -7,8 +7,9 @@ const hotelController = {
             let new_hotel = await modelHotel.create(req.body)
             res.status(201).json({
                 id: new_hotel._id,
-                sucess:true,
+                success:true,
                 message:'The Hotel was created successfully',
+                body: new_hotel
             })
         }catch(error){
             res.status(400).json({
@@ -30,14 +31,11 @@ const hotelController = {
         }
 
         if(req.query.order){
-            order = {
-                ...query,
-                capacity: req.query.order
-            }
+            order = {capacity: req.query.order}
         }
 
         try{
-            let find_req = await modelHotel.find(query).sort(order).populate([{ path:"userId", select: "name photo -_id"}]).populate([{ path:"citiId", select: "name -_id"}])
+            let find_req = await modelHotel.find(query).sort(order)
             res.status(200).json({
                 response: find_req,
                 sucess:true,
