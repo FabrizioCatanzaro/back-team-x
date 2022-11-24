@@ -1,7 +1,7 @@
 const { createTransport } = require('nodemailer')
 const { google } = require('googleapis')
 const OAuth2 = google.auth.OAuth2
-const { GOOGLE_ID,GOOGLE_REFRESH,GOOGLE_SECRET,GOOGLE_URL,GOOGLE_USER, BACK_URL } = process.env
+const { GOOGLE_ID,GOOGLE_REFRESH,GOOGLE_SECRET,GOOGLE_URL,GOOGLE_USER,BACK_URL } = process.env
 
 function createClient() {
     return new OAuth2(

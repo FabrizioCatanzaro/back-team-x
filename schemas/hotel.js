@@ -34,7 +34,7 @@ const schema = joi.object({
             "number.empty": "you can't leave this field empty",
             "number.base": "only numbers are valid"
         }),
-        description: joi
+    description: joi
         .string()
         .required()
         .min(15)
