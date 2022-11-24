@@ -33,7 +33,7 @@ function getEmailBody({code,host,name}) {
         <div style="background-color: black; border-radius: 1.5rem; padding: 1.5rem; border-style: groove; width: 70%; height:100%; text-align:center">
             <h1 style= "font-size:2rem; font-style:oblique; font-family: Georgia, 'Times New Roman', Times, serif; color:white; text-align:center; text-decoration: none">¡Hello ${name}!</h1>
             <p style="font-size: 1.2rem; text-align:center; font-family: Tahoma, Geneva, Verdana, sans-serif; color: white">We're glad you are interested in joining to our Website. But first of all, we have to check your email account</p>        
-            <p style="text-align:center; color: white; font-size: 1.4rem">Please, <a href="${host}auth/verify/${code}" style="font-size: 1.4rem;  color: #1155CC; text-align:center; text-decoration: none; font-weight: bold; text-shadow: 0 0 3px #FF0000">click here</a> to verify your account in My Tinerary.</p>
+            <p style="text-align:center; color: white; font-size: 1.4rem">Please, <a href="${host}api/auth/verify/${code}" style="font-size: 1.4rem;  color: #1155CC; text-align:center; text-decoration: none; font-weight: bold; text-shadow: 0 0 3px #FF0000">click here</a> to verify your account in My Tinerary.</p>
         </div>
     `
 }
