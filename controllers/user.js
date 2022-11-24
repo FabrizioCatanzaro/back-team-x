@@ -59,9 +59,7 @@ const controller = {
         let code = crypto.randomBytes(10).toString('hex')
 
         password = bcryptjs.hashSync(password, 10)
-        console.log(password)
-        console.log(email)
-        console.log(code)
+
         try{
             await User.create({ name, lastName, photo, age, email, role, password, country, verified, logged, code })
             await accountVerificationEmail(email, code, name)

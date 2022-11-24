@@ -38,15 +38,15 @@ function getEmailBody({code,host,name}) {
     `
 }
 
-const accountVerificationEmail = async (mailDelNuevoUsuario,codigoCalculadoConCrypto, nombreDelUsuario) => {
+const accountVerificationEmail = async (newUserMail,codeWithCrypto, userName) => {
     const client = createClient() 
     client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH }) 
     const transport = getTransport(client) 
     const mailOptions = { 
         from: GOOGLE_USER, 
-        to: mailDelNuevoUsuario, 
+        to: newUserMail, 
         subject: 'Verify your new account in My Tinerary', 
-        html: getEmailBody({ name:nombreDelUsuario, code:codigoCalculadoConCrypto, host:BACK_URL }) 
+        html: getEmailBody({ name:userName, code:codeWithCrypto, host:BACK_URL }) 
     }
     await transport.sendMail( 
         mailOptions, 

@@ -1,7 +1,7 @@
 let router = require('express').Router()
 let { register } = require('../controllers/user')
 const validator = require('../middlewares/validator')
-const schema = require('../schemas/user') //crear schema de usuario
+const schema = require('../schemas/userSignUp') //crear schema de usuario
 const { accountExists } = require('../middlewares/accountExistsSignUp')
 
 
