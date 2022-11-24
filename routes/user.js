@@ -7,6 +7,6 @@ const { accountExists } = require('../middlewares/accountExistsSignUp')
 
 //router.post('/', create)
 //router.get('/', read)
-router.post('/',validator(schema),accountExists,register)
+router.post('/sign-up',validator(schema),accountExists,register)
 
 module.exports = router

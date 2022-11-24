@@ -64,7 +64,7 @@ const controller = {
         console.log(code)
         try{
             await User.create({ name, lastName, photo, age, email, role, password, country, verified, logged, code })
-            await accountVerificationEmail(email, code)
+            await accountVerificationEmail(email, code, name)
             return userSignedUpResponse(req,res)
 
         } catch(error){

@@ -3,7 +3,7 @@ const { google } = require('googleapis')
 const OAuth2 = google.auth.OAuth2
 const { GOOGLE_ID,GOOGLE_REFRESH,GOOGLE_SECRET,GOOGLE_URL,GOOGLE_USER, BACK_URL } = process.env
 
-function createClient() { //defino una funcion para construir la credencial
+function createClient() {
     return new OAuth2(
         GOOGLE_ID,
         GOOGLE_SECRET,
@@ -11,12 +11,11 @@ function createClient() { //defino una funcion para construir la credencial
     )
 }
 
-function getTransport(client) { //defino el transportador
-    //la funcion requiere que le pase la credencial COMPLETA (la recien creada + refresh token)
-    const accessToken = client.getAccessToken() //access token tiene vencimiento por eso lo calculo
+function getTransport(client) { 
+    const accessToken = client.getAccessToken()
     return createTransport({
-        service: 'gmail',   //nombre de servicio de mensajeria
-        auth: {             //los datos de las credenciales
+        service: 'gmail',  
+        auth: {             
             user: GOOGLE_USER,
             type: 'OAuth2',
             clientId: GOOGLE_ID,
@@ -24,39 +23,34 @@ function getTransport(client) { //defino el transportador
             refreshToken: GOOGLE_REFRESH,
             accessToken: accessToken
         },
-        tls: { rejectUnauthorized: false } //propiedad de seguridad
+        tls: { rejectUnauthorized: false }
     })
 }
 
 
-function getEmailBody({name,code,host}) { //defino una funcion para definir el cuerpo del mail (template)
-    //debe tener un link hacia una ruta del controlador de usuario
-    //que cambia la propiedad verificado de false a true
+function getEmailBody({code,host,name}) {
     return `
-        <div>
-            <h1>Hola, ${name}</h1>            
-            <a href="${host}auth/verify/${code}">
-                Verify my account.
-            </a>
+        <div style="background-color: black; border-radius: 1.5rem; padding: 1.5rem; border-style: groove; width: 70%; height:100%; text-align:center">
+            <h1 style= "font-size:2rem; font-style:oblique; font-family: Georgia, 'Times New Roman', Times, serif; color:white; text-align:center; text-decoration: none">¡Hello ${name}!</h1>
+            <p style="font-size: 1.2rem; text-align:center; font-family: Tahoma, Geneva, Verdana, sans-serif; color: white">We're glad you are interested in joining to our Website. But first of all, we have to check your email account</p>        
+            <p style="text-align:center; color: white; font-size: 1.4rem">Please, <a href="${host}auth/verify/${code}" style="font-size: 1.4rem;  color: #1155CC; text-align:center; text-decoration: none; font-weight: bold; text-shadow: 0 0 3px #FF0000">click here</a> to verify your account in My Tinerary.</p>
         </div>
     `
 }
 
-//defino una ultima funcion que junta todos los subpasitos anteriores
-const accountVerificationEmail = async (mailDelNuevoUsuario,codigoCalculadoConCrypto) => {
-    //defino una credencial utilizando la función anterior
+const accountVerificationEmail = async (mailDelNuevoUsuario,codigoCalculadoConCrypto, nombreDelUsuario) => {
     const client = createClient() 
-    client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH }) //seteo manualmente el refresh
-    const transport = getTransport(client) //defino un transportador utilizando la funcion anterior
-    const mailOptions = { //defino las opciones del correo
-        from: GOOGLE_USER, //desde donde envio el correo
-        to: mailDelNuevoUsuario, //hacia quien
-        subject: 'Verify your new account in Amazing Events', //asunto del mail
-        html: getEmailBody({ name:mailDelNuevoUsuario, code:codigoCalculadoConCrypto, host:BACK_URL }) //template
+    client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH }) 
+    const transport = getTransport(client) 
+    const mailOptions = { 
+        from: GOOGLE_USER, 
+        to: mailDelNuevoUsuario, 
+        subject: 'Verify your new account in My Tinerary', 
+        html: getEmailBody({ name:nombreDelUsuario, code:codigoCalculadoConCrypto, host:BACK_URL }) 
     }
-    await transport.sendMail( //utilizo el metodo sendMail del transportador para enviar el correo
-        mailOptions, //opciones del correo
-        (error, response) => { //función callback para manejar el error
+    await transport.sendMail( 
+        mailOptions, 
+        (error, response) => {
             if (error) {
                 console.error(error)
                 return
