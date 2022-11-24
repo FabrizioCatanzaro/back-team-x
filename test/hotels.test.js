@@ -6,7 +6,7 @@ const request = require('supertest')
 describe('GET /hotels', function(){
     it('should be 404 status',function(done){
         request(app)
-        .get('/hotels?name=afg')
+        .get('/hotels?name=asdasda')
         .expect(res=>{
             let response = res.status
             assert.strictEqual(response,404)
@@ -31,9 +31,9 @@ describe('Post Hotels', ()=>{
                 "https://upload.wikimedia.org/wikipedia/commons/e/e1/Chaoyang%2C_Beijing_IMG_4436_Beijing_Intl_Convention_Center.jpg",
                 "https://ak-d.tripcdn.com/images/200i16000000z6d3fE2AB_Z_1100_824_R5_Q70_D.jpg"
                 ],
-            "description":"Es un hotel",
+            "description":"Es un hotel de prueba para testear",
             "capacity":20000,
-            "citiId":"6372ff7e1f2df6469dfdf856",
+            "citiId":"6372ff7e1f2df6469dfdf855",
             "userId":"6372d48e597d27b935de7568"
             }
             
