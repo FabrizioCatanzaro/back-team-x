@@ -1,7 +1,13 @@
 const User = require('../models/Model_User')
+const bcryptjs = require('bcryptjs')
+const crypto = require('crypto')
+const { nextTick } = require('process')
+const accountVerificationEmail = require('./accountVerificationEmail')
+const { userSignedUpResponse } = require('../config/responses')
+
 
 const controller = {
-    create: async(req,res) => {
+/*     create: async(req,res) => {
         try {
             let new_user = await User.create(req.body)
             res.status(201).json({
@@ -43,6 +49,23 @@ const controller = {
 
         } catch (error){
 
+        }
+    }, */
+
+    register: async(req,res) => {
+        let {name, lastName, photo, age, email, password, country} = req.body
+        let verified = false
+        let logged = false
+        let code = crypto.randomBytes(10).toString('hex')
+
+        password = bcryptjs.hashSync(password, 10)
+        try{
+            await User.create({ name, lastName, photo, age, email, password, country, verified, logged, code })
+            await accountVerificationEmail(email, code)
+            return userSignedUpResponse(req,res)
+
+        } catch(error){
+            next(error)
         }
     }
 }
