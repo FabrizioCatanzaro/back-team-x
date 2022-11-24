@@ -35,7 +35,7 @@ function getEmailBody({mail,code,host}) { //defino una funcion para definir el c
     return `
         <div>
             <h1>Hola, ${mail}</h1>            
-            <a href="${host}auth/verify/${code}">
+            <a href="${host}api/auth/verify/${code}">
                 Verify my account.
             </a>
         </div>

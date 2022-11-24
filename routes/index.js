@@ -7,7 +7,7 @@ let show = require('./show')
 
 
 
-router.use('/api/users', user)
+router.use('/api/auth', user)
 router.use('/api/cities', city)
 router.use('/api/itineraries', itinerary)
 router.use('/api/hotels',hotel)

@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const { nextTick } = require('process')
 const accountVerificationEmail = require('./accountVerificationEmail')
-const { userSignedUpResponse } = require('../config/responses')
+const { userSignedUpResponse, userNotFoundResponse } = require('../config/responses')
 
 
 const controller = {
@@ -67,7 +67,29 @@ const controller = {
         } catch(error){
             next(error)
         }
-    }
+    },
+
+
+    verify: async (req,res, next) =>{
+        const { codeX } = req.params
+        console.log(codeX)
+        try{
+            let user = await User.findOneAndUpdate({ code:codeX },{ verified:true },{ new:true })
+            if(user){
+                return res.redirect('https://www.google.com/')
+            }
+            return userNotFoundResponse(req,res)
+        }catch(e){
+            next(error)
+        }
+    },
+
+
+    /* getInto: async (req,res) =>{
+
+    } */
+
+
 }
 
 module.exports = controller

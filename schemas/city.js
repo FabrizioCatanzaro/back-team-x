@@ -37,8 +37,8 @@ const schema = joi.object({
         .required()
         .messages({
             "any.required": "Population field is mandatory",
-            "string.empty": "Population field must be filled with something",
-            "string.base": "Population must be a number not letters or symbols",
+            "number.empty": "Population field must be filled with something",
+            "number.base": "Population must be a number not letters or symbols",
         }),
     userId: joi
         .string()
