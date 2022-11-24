@@ -1,3 +1,4 @@
+const { query } = require('express');
 const modelHotel = require('../models/Model_Hotel');
 
 const hotelController = {
@@ -7,8 +8,9 @@ const hotelController = {
             let new_hotel = await modelHotel.create(req.body)
             res.status(201).json({
                 id: new_hotel._id,
-                sucess:true,
+                success:true,
                 message:'The Hotel was created successfully',
+                body: new_hotel
             })
         }catch(error){
             res.status(400).json({
@@ -20,7 +22,7 @@ const hotelController = {
 
     read: async (req,res) => {
         let query = {}
-        let order ={}
+        let order = {}
      
         if(req.query.name){
             query = {
@@ -30,14 +32,18 @@ const hotelController = {
         }
 
         if(req.query.order){
-            order = {
-                ...query,
-                capacity: req.query.order
-            }
+            order = {capacity: req.query.order}
         }
 
+        if(req.query.userId){
+            query = {
+            ...query,
+            userId:req.query.userId
+        }
+    }
+
         try{
-            let find_req = await modelHotel.find(query).sort(order).populate([{ path:"userId", select: "name photo -_id"}]).populate([{ path:"citiId", select: "name -_id"}])
+            let find_req = await modelHotel.find(query).sort(order)
             res.status(200).json({
                 response: find_req,
                 sucess:true,
@@ -58,7 +64,7 @@ const hotelController = {
             if(find_update){
                 res.status(200).json({
                     name: find_update.name,
-                    sucess:true,
+                    success:true,
                     message:`Hotel found and modified`
                 })
             }else{
@@ -82,7 +88,7 @@ const hotelController = {
             if(find_delete){
                 res.status(200).json({
                     delete: find_delete.name,
-                    sucess:true,
+                    success:true,
                     message: 'Hotel removed successfully'
                 })
             }else{
