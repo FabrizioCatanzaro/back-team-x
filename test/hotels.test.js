@@ -31,10 +31,10 @@ describe('Post Hotels', ()=>{
                 "https://upload.wikimedia.org/wikipedia/commons/e/e1/Chaoyang%2C_Beijing_IMG_4436_Beijing_Intl_Convention_Center.jpg",
                 "https://ak-d.tripcdn.com/images/200i16000000z6d3fE2AB_Z_1100_824_R5_Q70_D.jpg"
                 ],
-            "description":"Es un hotel",
-            "capacity":20000,
+                "capacity": 20000,
+            "description":"Es un hotel demasiado lindo",
+            "userId":"6372d48e597d27b935de7568",
             "citiId":"6372ff7e1f2df6469dfdf856",
-            "userId":"6372d48e597d27b935de7568"
             }
             
             request(app)
