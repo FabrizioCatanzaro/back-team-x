@@ -1,67 +1,24 @@
 const User = require('../models/Model_User')
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
-const { nextTick } = require('process')
+const jwt = require('jsonwebtoken')
 const accountVerificationEmail = require('./accountVerificationEmail')
-const { userSignedUpResponse, userNotFoundResponse } = require('../config/responses')
+const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse } = require('../config/responses')
 
 
 const controller = {
-/*     create: async(req,res) => {
-        try {
-            let new_user = await User.create(req.body)
-            res.status(201).json({
-                id: new_user._id,
-                success: true,
-                message: "Congrats! The user was created with success"
-            })
-        } catch (error){
-            res.status(400).json({
-                success: false,
-                message: error.message
-            })
-        }
-    },
-    read: async(req,res) => {
-        try {
-            let all_user = await User.find()
-            res.status(200).json({
-                response: all_user,
-                success: true,
-                message: "Users were found successfully"
-            })
-        } catch (error){
-            res.status(400).json({
-                success: false,
-                message: "Cannot find users"
-            })
-        }
-    },
-    update: async(req,res) => {
-        try {
-
-        } catch (error){
-
-        }
-    },
-    destroy: async(req,res) => {
-        try {
-
-        } catch (error){
-
-        }
-    }, */
-
-    register: async(req,res) => {
-        let {name, lastName, photo, age, email, password, country} = req.body
+    
+    register: async(req,res,next) => {
+        let {name, lastName, photo, age, email, role, password, country} = req.body
         let verified = false
         let logged = false
         let code = crypto.randomBytes(10).toString('hex')
 
         password = bcryptjs.hashSync(password, 10)
+
         try{
-            await User.create({ name, lastName, photo, age, email, password, country, verified, logged, code })
-            await accountVerificationEmail(email, code)
+            await User.create({ name, lastName, photo, age, email, role, password, country, verified, logged, code })
+            await accountVerificationEmail(email, code, name)
             return userSignedUpResponse(req,res)
 
         } catch(error){
@@ -71,10 +28,10 @@ const controller = {
 
 
     verify: async (req,res, next) =>{
-        const { codeX } = req.params
-        console.log(codeX)
+        const { code } = req.params
+        console.log(code)
         try{
-            let user = await User.findOneAndUpdate({ code:codeX },{ verified:true },{ new:true })
+            let user = await User.findOneAndUpdate({ code:code },{ verified:true },{ new:true })
             if(user){
                 return res.redirect('https://www.google.com/')
             }
@@ -85,11 +42,56 @@ const controller = {
     },
 
 
-    /* getInto: async (req,res) =>{
+    access: async (req,res, next) => {
+        let { password } = req.body
+        let { user } = req
 
-    } */
+        try{
+            const verifiedPassword = bcryptjs.compareSync(password, user.password)
 
+            if(verifiedPassword){
+                await User.findOneAndUpdate({email:user.email}, {logged:true}, {new:true})
+                let token = jwt.sign(
+                    {id:user.id},
+                    process.env.KEY_JWT,
+                    {expiresIn: 60 * 60 * 24}
+                )
+                user = {
+                    name:user.name,
+                    lastName:user.lastName,
+                    email: user.email,
+                    photo:user.photo
+                } 
+                return res.status(200).json({
+                    response:{ user, token},
+                    success: true,
+                    message:'Welcome ' + user.name
+                })
+            }
+            return invalidCredentialsResponse(req,res)
+        }catch(error){
+            next(error)
+        }
+    },
 
+    accessWithToken: async(req,res,next) =>{
+        let { user } = req
+        try{
+            return res.json({
+                response:{
+                    user:{
+                        name:user.name,
+                        lastName:user.lastName,
+                        photo:user.photo
+                    },
+                    success:true,
+                    message: "Welcome " + user.name
+                }
+            })
+        }catch(error){
+            next(error)
+        }
+    }
 }
 
 module.exports = controller
