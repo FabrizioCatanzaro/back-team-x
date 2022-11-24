@@ -1,7 +1,7 @@
 const { createTransport } = require('nodemailer')
 const { google } = require('googleapis')
 const OAuth2 = google.auth.OAuth2
-const { GOOGLE_ID,GOOGLE_REFRESH,GOOGLE_SECRET,GOOGLE_URL,GOOGLE_USER,BACK_URL } = process.env
+const { GOOGLE_ID,GOOGLE_REFRESH,GOOGLE_SECRET,GOOGLE_URL,GOOGLE_USER, BACK_URL } = process.env
 
 function createClient() { //defino una funcion para construir la credencial
     return new OAuth2(
@@ -29,12 +29,12 @@ function getTransport(client) { //defino el transportador
 }
 
 
-function getEmailBody(mail,code,host) { //defino una funcion para definir el cuerpo del mail (template)
+function getEmailBody({name,code,host}) { //defino una funcion para definir el cuerpo del mail (template)
     //debe tener un link hacia una ruta del controlador de usuario
     //que cambia la propiedad verificado de false a true
     return `
         <div>
-            <h1>Hola, ${mail}</h1>            
+            <h1>Hola, ${name}</h1>            
             <a href="${host}auth/verify/${code}">
                 Verify my account.
             </a>
@@ -52,7 +52,7 @@ const accountVerificationEmail = async (mailDelNuevoUsuario,codigoCalculadoConCr
         from: GOOGLE_USER, //desde donde envio el correo
         to: mailDelNuevoUsuario, //hacia quien
         subject: 'Verify your new account in Amazing Events', //asunto del mail
-        html: getEmailBody({ mail:mailDelNuevoUsuario, code:codigoCalculadoConCrypto, host:BACK_URL}) //template
+        html: getEmailBody({ name:mailDelNuevoUsuario, code:codigoCalculadoConCrypto, host:BACK_URL }) //template
     }
     await transport.sendMail( //utilizo el metodo sendMail del transportador para enviar el correo
         mailOptions, //opciones del correo
