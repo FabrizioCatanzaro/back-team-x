@@ -60,6 +60,7 @@ const controller = {
                     name:user.name,
                     lastName:user.lastName,
                     email: user.email,
+                    role: user.role,
                     photo:user.photo
                 } 
                 return res.status(200).json({
@@ -76,13 +77,15 @@ const controller = {
 
     accessWithToken: async(req,res,next) =>{
         let { user } = req
+        console.log(user)
         try{
             return res.json({
                 response:{
                     user:{
                         name:user.name,
                         lastName:user.lastName,
-                        photo:user.photo
+                        photo:user.photo,
+                        role: user.role
                     },
                     success:true,
                     message: "Welcome " + user.name
