@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
 const accountVerificationEmail = require('./accountVerificationEmail')
-const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse } = require('../config/responses')
+const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse, userSignedOutResponse } = require('../config/responses')
 
 
 const controller = {
@@ -45,10 +45,8 @@ const controller = {
     access: async (req,res, next) => {
         let { password } = req.body
         let { user } = req
-
         try{
             const verifiedPassword = bcryptjs.compareSync(password, user.password)
-
             if(verifiedPassword){
                 await User.findOneAndUpdate({email:user.email}, {logged:true}, {new:true})
                 let token = jwt.sign(
@@ -94,7 +92,25 @@ const controller = {
         }catch(error){
             next(error)
         }
+    },
+
+
+    signOut: async(req,res,next)=> {
+        let { email } = req.user
+        console.log(email)
+
+        try{
+            await User.findOneAndUpdate({email}, {logged:false}, {new:true})
+            return userSignedOutResponse(req,res)
+        }catch(error){
+            next(error) 
+        }
     }
+
+
+
+
+
 }
 
 module.exports = controller
