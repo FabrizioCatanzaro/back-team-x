@@ -36,7 +36,7 @@ function mustSignInResponse(req,res) {
 function invalidCredentialsResponse(req,res) {
     return res.status(401).json({
         success: false,
-        message: 'email or password incorrect'
+        message: 'Email or Password Incorrect'
     })
 }
 
