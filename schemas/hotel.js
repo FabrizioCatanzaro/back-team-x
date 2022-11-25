@@ -14,12 +14,8 @@ const schema = joi.object({
             "string.base": "only letters and numbers are valid"
         }),
     photo: joi
-        .array()
-        .items(
-            joi
-            .string()
-            .uri()
-        )
+        .string()
+        .uri()
         .required()
         .messages({
             "string.required": "the field is required, please enter an URL",
