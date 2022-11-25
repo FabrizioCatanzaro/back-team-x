@@ -21,10 +21,19 @@ const controller = {
     read: async(req,res) => {
         let query = {}
         if (req.query.cityId){
-            query = { cityId: req.query.cityId }
+            query = {
+                ...query,
+                cityId: req.query.cityId
+            }
+        }
+        if (req.query.userId){
+            query = {
+                ...query,
+                userId: req.query.userId
+            }
         }
         try{
-            let all_itineraries = await Itinerary.find(query)
+            let all_itineraries = await Itinerary.find(query).populate([{path: "userId", select:  "_id"}])
             res.status(200).json({
                 response: all_itineraries,
                 success: true,
