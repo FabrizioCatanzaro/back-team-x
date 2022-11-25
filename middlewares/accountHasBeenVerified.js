@@ -1,4 +1,4 @@
-const { verifyResponse } = require("../responses/auth")
+const { verifyResponse } = require('../config/responses')
 
 function accountHasBeenVerified(req, res, next) {
     if (req.user.verified) {
@@ -7,4 +7,4 @@ function accountHasBeenVerified(req, res, next) {
     verifyResponse(req,res)
 }
 
-module.exports = { accountHasBeenVerified }
+module.exports =  accountHasBeenVerified 

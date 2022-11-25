@@ -14,7 +14,7 @@ const hotelController = {
             })
         }catch(error){
             res.status(400).json({
-                sucess:false,
+                success:false,
                 message:error.message,
             })
         }

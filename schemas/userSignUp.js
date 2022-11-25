@@ -1,6 +1,6 @@
 const joi = require('joi')
 
-const schema = joi.object({
+const schemaSignUp = joi.object({
     name: joi
         .string()
         .required()
@@ -90,4 +90,4 @@ const schema = joi.object({
         })
 })
 
-module.exports = schema
+module.exports = schemaSignUp
