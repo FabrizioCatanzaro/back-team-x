@@ -30,11 +30,18 @@ function getTransport(client) {
 
 function getEmailBody({code,host,name}) {
     return `
-        <div style="background-color: black; border-radius: 1.5rem; padding: 1.5rem; border-style: groove; width: 70%; height:100%; text-align:center">
-            <h1 style= "font-size:2rem; font-style:oblique; font-family: Georgia, 'Times New Roman', Times, serif; color:white; text-align:center; text-decoration: none">¡Hello ${name}!</h1>
-            <p style="font-size: 1.2rem; text-align:center; font-family: Tahoma, Geneva, Verdana, sans-serif; color: white">We're glad you are interested in joining to our Website. But first of all, we have to check your email account</p>        
-            <p style="text-align:center; color: white; font-size: 1.4rem">Please, <a href="${host}api/auth/verify/${code}" style="font-size: 1.4rem;  color: #1155CC; text-align:center; text-decoration: none; font-weight: bold; text-shadow: 0 0 3px #FF0000">click here</a> to verify your account in My Tinerary.</p>
-        </div>
+    <div
+        style="background-image: url(https://images.unsplash.com/photo-1550133730-695473e544be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80); background-size: cover;
+        background-position: center; background-color: rgb(45, 45, 45); background-blend-mode: multiply;border-radius: 1.5rem; padding: 1.5rem; border-style: groove; width: 70%; height:18rem; text-align:center; justify-content: space-between;">
+        <h1
+            style="font-size:2rem; font-style:oblique; font-family: Georgia, 'Times New Roman', Times, serif; color:white; text-align:center; text-decoration: none">
+            ¡Hello ${name}!</h1>
+        <p style="font-size: 1.2rem; text-align:center; font-family: Tahoma, Geneva, Verdana, sans-serif; color: white">
+            We're glad you are interested in joining to our Website. But first of all, we have to check your email
+            account</p>
+        <p style="text-align:center; color: white; font-size: 1.2rem; font-family: Tahoma, Geneva, Verdana, sans-serif">Please, click the button below to verify your account in My Tinerary :D</p>
+        <div><a href="${host}api/auth/verify/${code}" style="background-color: white; padding: .6rem 2.6rem; font-size: 1.5rem;font-family: Tahoma; text-decoration: none; color: black; border-radius: 20px;">VERIFY MY ACCOUNT</a></div>
+    </div>
     `
 }
 
