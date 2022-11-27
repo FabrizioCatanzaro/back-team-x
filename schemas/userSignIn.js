@@ -14,8 +14,6 @@ const schemaSignIn = joi.object({
     password: joi
         .string()
         .required()
-        .min(6)
-        .max(16)
         .trim()
         .messages({
             "any.required": "Password field is mandatory",

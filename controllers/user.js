@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
 const accountVerificationEmail = require('./accountVerificationEmail')
-const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse } = require('../config/responses')
+const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse, userSignedOutResponse } = require('../config/responses')
 
 
 const controller = {
@@ -29,7 +29,7 @@ const controller = {
 
     verify: async (req,res, next) =>{
         const { code } = req.params
-        console.log(code)
+        //console.log(code)
         try{
             let user = await User.findOneAndUpdate({ code:code },{ verified:true },{ new:true })
             if(user){
@@ -45,10 +45,10 @@ const controller = {
     access: async (req,res, next) => {
         let { password } = req.body
         let { user } = req
-
+        console.log("REQ body",req.body)
+        console.log("REQ user",req.user)
         try{
             const verifiedPassword = bcryptjs.compareSync(password, user.password)
-
             if(verifiedPassword){
                 await User.findOneAndUpdate({email:user.email}, {logged:true}, {new:true})
                 let token = jwt.sign(
@@ -60,8 +60,11 @@ const controller = {
                     name:user.name,
                     lastName:user.lastName,
                     email: user.email,
-                    photo:user.photo
-                } 
+                    role: user.role,
+                    photo:user.photo,
+                    id: user.id
+                }
+                console.log("user",user)
                 return res.status(200).json({
                     response:{ user, token},
                     success: true,
@@ -76,22 +79,44 @@ const controller = {
 
     accessWithToken: async(req,res,next) =>{
         let { user } = req
+        console.log("ACCES WIT TOJKENB",user)
         try{
             return res.json({
                 response:{
                     user:{
                         name:user.name,
                         lastName:user.lastName,
-                        photo:user.photo
+                        photo:user.photo,
+                        role: user.role,
+                        id: user.id
                     },
                     success:true,
                     message: "Welcome " + user.name
-                }
+                },
             })
+            
         }catch(error){
             next(error)
         }
+    },
+
+
+    signOut: async(req,res,next)=> {
+        let { email } = req.user
+        //console.log(email)
+
+        try{
+            await User.findOneAndUpdate({email}, {logged:false}, {new:true})
+            return userSignedOutResponse(req,res)
+        }catch(error){
+            next(error) 
+        }
     }
+
+
+
+
+
 }
 
 module.exports = controller
