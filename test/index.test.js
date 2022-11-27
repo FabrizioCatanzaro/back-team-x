@@ -33,7 +33,7 @@ describe('POST a new city', function(){
         continent: "Europe",
         photo: "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         population: 312312,
-        userId: "6372d48e597d27b935de7569",
+        userId: "63813795343a278f1fad3cce",
     }
 
         request(app)
@@ -73,4 +73,22 @@ describe('POST a new city', function(){
                     done()
                 })
         })
+})
+
+describe('DELETE a city', function(){
+
+    it('Should delete a city succesfully', function(done){
+
+        request(app)
+            .delete(`/api/cities/6383da1729536740ffbf633d`)
+            .expect(response => {
+                assert.equal(response.status, 200, 'city should be deleted succesfully')
+            })
+            .end(function(err,res){
+                if(err){
+                    return done(err)
+                }
+                done()
+            })
+    })
 })
