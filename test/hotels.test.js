@@ -33,12 +33,8 @@ describe('Post Hotels', ()=>{
                 ],
             "description":"Es un hotel de prueba para testear",
             "capacity":20000,
-            "citiId":"6372ff7e1f2df6469dfdf855",
-            "userId":"6372d48e597d27b935de7568",
-            "capacity": 20000,
-            "description":"Es un hotel demasiado lindo",
-            "userId":"6372d48e597d27b935de7568",
-            "citiId":"6372ff7e1f2df6469dfdf856",
+            "userId":"63813795343a278f1fad3cce",
+            "citiId":"637bf7a466bf51d447983e2d",
             }
             
             request(app)
