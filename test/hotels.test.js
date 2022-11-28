@@ -26,22 +26,18 @@ describe('Post Hotels', ()=>{
 
         const testHotel = {
             "name":"New Hotel",
-            "photo":[
-                "https://upload.wikimedia.org/wikipedia/commons/a/a7/Beijing_International_Convention_Center_%2820200810181819%29.jpg",
-                "https://upload.wikimedia.org/wikipedia/commons/e/e1/Chaoyang%2C_Beijing_IMG_4436_Beijing_Intl_Convention_Center.jpg",
-                "https://ak-d.tripcdn.com/images/200i16000000z6d3fE2AB_Z_1100_824_R5_Q70_D.jpg"
-                ],
+            "photo":"https://upload.wikimedia.org/wikipedia/commons/a/a7/Beijing_International_Convention_Center_%2820200810181819%29.jpg", 
             "description":"Es un hotel de prueba para testear",
             "capacity":20000,
-            "userId":"63813795343a278f1fad3cce",
-            "citiId":"637bf7a466bf51d447983e2d",
+            "userId":"637ff16aaaff4b19fbb58e19",
+            "citiId":"6372ff7e1f2df6469dfdf856",
             }
             
             request(app)
             .post("/api/hotels")
             .send(testHotel)
-            .expect(response => {
-                assert.typeOf(response.body.body.capacity, "number", "its a number")
+            .expect(res => {
+                assert.isNumber(res.body.body.capacity)
             })
             .expect(201)
             .end(function (err) {
@@ -51,4 +47,22 @@ describe('Post Hotels', ()=>{
                 done();
             });
     })
+})
+
+describe('DELETE a show', function(){
+
+    it("Delete a show successfully", function (done) {
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2ZmMTZhYWFmZjRiMTlmYmI1OGUxOSIsImlhdCI6MTY2OTU5MTE2OCwiZXhwIjoxNjY5Njc3NTY4fQ.Jma51U-Z0XQrN0-coBBYcKFtKmqggiuRRMgAsqFERFo"
+        idShow = '638405bb1904171cb2ffcd84'
+        request(app)
+            .delete(`/api/shows/${idShow}`)
+            .auth(token, { type: "bearer" })
+            .expect(200)
+            .end(function (err, res) {
+                if (err) {
+                    return done(err);
+                }
+                done();
+            });
+    });
 })

@@ -75,20 +75,22 @@ describe('POST a new city', function(){
         })
 })
 
+
+
 describe('DELETE a city', function(){
 
-    it('Should delete a city succesfully', function(done){
-
+    it("Delete a city successfully", function (done) {
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2ZmMTZhYWFmZjRiMTlmYmI1OGUxOSIsImlhdCI6MTY2OTU5MTE2OCwiZXhwIjoxNjY5Njc3NTY4fQ.Jma51U-Z0XQrN0-coBBYcKFtKmqggiuRRMgAsqFERFo"
+        idCity= '63843d31fa013a1418be9e17'
         request(app)
-            .delete(`/api/cities/6383da1729536740ffbf633d`)
-            .expect(response => {
-                assert.equal(response.status, 200, 'city should be deleted succesfully')
-            })
-            .end(function(err,res){
-                if(err){
-                    return done(err)
+            .delete(`/api/cities/${idCity}`)
+            .auth(token, { type: "bearer" })
+            .expect(200)
+            .end(function (err, res) {
+                if (err) {
+                    return done(err);
                 }
-                done()
-            })
-    })
+                done();
+            });
+    });
 })
