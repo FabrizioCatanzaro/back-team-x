@@ -80,7 +80,7 @@ describe('DELETE a city', function(){
     it('Should delete a city succesfully', function(done){
 
         request(app)
-            .delete(`/api/cities/6383da1729536740ffbf633d`)
+            .delete(`/api/cities/6383db8af5f4261617ccde34`)
             .expect(response => {
                 assert.equal(response.status, 200, 'city should be deleted succesfully')
             })
