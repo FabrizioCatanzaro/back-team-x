@@ -45,29 +45,6 @@ const showController = {
         }
     },
 
-    update: async (req,res) => {
-        let {id} = req.params
-        try{
-            let find_update = await modelShow.findOneAndUpdate({_id:id}, req.body, {new:true})
-            if(find_update){
-                res.status(200).json({
-                    name: find_update.name,
-                    success:true,
-                    message:`Show found and modified!`
-                })
-            }else{
-                res.status(404).json({
-                    success:false,
-                    message:'Show not found sorry'
-                })
-            }
-        }catch(error){
-            res.status(404).json({
-                sucess:false,
-                message: error.message,
-            })
-        }
-    },
     
     one: async(req,res) => {
         let { id } = req.params
@@ -93,30 +70,79 @@ const showController = {
         }
     },
 
-    destroy: async (req,res) => {
-        let {id} = req.params
-        try{
-            let find_delete = await modelShow.findOneAndDelete({_id:id})
-            if(find_delete){
-                res.status(200).json({
-                    delete: find_delete.name,
-                    success:true,
-                    message: 'Show deleted successfully'
-                })
-            }else{
-                res.status(404).json({
-                    sucess:false,
-                    message:'Show not found',
-                })
+
+    update: async (req, res) => {
+        
+        let { id } = req.params;
+
+        try {
+            let oneShowFind = await modelShow.findById(id)
+            if (oneShowFind.userId.equals(req.user.id)) {
+                let oneShow = await modelShow.findOneAndUpdate({ _id: id }, req.body, { new: true });
+                if (oneShow) {
+                    res.status(200).json({
+                        success: true,
+                        message: 'Show succesfully updated',
+                        data: oneShow,
+                    });
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: 'Show not found',
+                    });
+                }
+            } else {
+                res.status(401).json({
+                    success: false,
+                    message: 'Unauthorized',
+                });
             }
-        }catch(error){
-            res.status(404).json({
-                success:false,
+        } catch (error) {
+            res.status(400).json({
+                success: false,
                 message: error.message,
-            })
+            });
         }
     },
+
+    destroy: async (req, res) => {
+        let { id } = req.params;
+
+        try {
+            let oneShowFind = await modelShow.findById(id)
+            if (oneShowFind.userId.equals(req.user.id)) {
+                let show = await modelShow.findOneAndDelete({ _id: id });
+                if (show) {
+                    res.status(200).json({
+                        success: true,
+                        message: 'Show deleted',
+                        data: show,
+                    });
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: 'Show not found',
+                    });
+                }
+            } else {
+                res.status(403).json({
+                    success: false,
+                    message: "You can't delete this Show",
+                });
+            }
+        } catch (error) {
+            res.status(400).json({
+                success: false,
+                message: error.message,
+            });
+        }
+    },
+
+
 }
+
+
+
 
 
 module.exports = showController
