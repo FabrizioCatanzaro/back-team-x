@@ -101,7 +101,7 @@ const controller = {
     },
 
 
-    signOut: async(req,res,next)=> {
+    signOut: async(req,res,next) => {
         let { email } = req.user
         //console.log(email)
 
@@ -111,9 +111,59 @@ const controller = {
         }catch(error){
             next(error) 
         }
+    },
+
+    getDataProfile: async(req,res) =>{
+        let { id } = req.params
+        try{
+            let user = await User.find( {_id:id} )
+            if(user){
+                res.status(200).json({
+                    success:true,
+                    message: 'User Found',
+                    response:{
+                        user,
+                    }
+                })
+            }else{
+                res.status(404).json({
+                    sucess:false,
+                    message:'User not found. Try Again',
+                })
+            }
+        }catch(error){
+            res.status(404).json({
+                sucess:false,
+                message: error.message,
+            })
+        }
+    },
+
+    editDataProfile: async(req,res) =>{
+        let {id} = req.params
+        try{
+            let user = await User.findOneAndUpdate( {_id:id}, req.body, {new:true} )
+            if(user){
+                res.status(200).json({
+                    success:true,
+                    message:`User found!`,
+                    response:{
+                        user,
+                    }
+                })
+            }else{
+                res.status(404).json({
+                    success:false,
+                    message:'User not found. Try Again'
+                })
+            }
+        }catch(error){
+            res.status(404).json({
+                sucess:false,
+                message: error.message,
+            })
+        }
     }
-
-
 
 
 
