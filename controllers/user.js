@@ -33,7 +33,7 @@ const controller = {
         try{
             let user = await User.findOneAndUpdate({ code:code },{ verified:true },{ new:true })
             if(user){
-                return res.redirect('https://www.google.com/')
+                return res.redirect('http://localhost:3000/signin')
             }
             return userNotFoundResponse(req,res)
         }catch(e){

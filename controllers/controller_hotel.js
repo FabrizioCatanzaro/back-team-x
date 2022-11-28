@@ -57,54 +57,6 @@ const hotelController = {
         }
     },
 
-    update: async (req,res) => {
-        let {id} = req.params
-        try{
-            let find_update = await modelHotel.findOneAndUpdate({_id:id}, req.body, {new:true})
-            if(find_update){
-                res.status(200).json({
-                    name: find_update.name,
-                    success:true,
-                    message:`Hotel found and modified`
-                })
-            }else{
-                res.status(404).json({
-                    sucess:false,
-                    message:'Hotel not found unfortunately'
-                })
-            }
-        }catch(error){
-            res.status(404).json({
-                sucess:false,
-                message: error.message,
-            })
-        }
-    },
-    
-    destroy: async (req,res) => {
-        let {id} = req.params
-        try{
-            let find_delete = await modelHotel.findOneAndDelete({_id:id})
-            if(find_delete){
-                res.status(200).json({
-                    delete: find_delete.name,
-                    success:true,
-                    message: 'Hotel removed successfully'
-                })
-            }else{
-                res.status(404).json({
-                    sucess:false,
-                    message:'Hotel not found',
-                })
-            }
-        }catch(error){
-            res.status(404).json({
-                sucess:false,
-                message: error.message,
-            })
-        }
-    },
-    
     one: async (req,res) =>{
         let {id} = req.params
         try{
@@ -130,6 +82,74 @@ const hotelController = {
             })
         }
     },
+
+    update: async (req, res) => {
+        let { id } = req.params;
+
+        try {
+            let oneHotelFind = await modelHotel.findById(id)
+            if (oneHotelFind.userId.equals(req.user.id)) {
+                let oneHotel = await modelHotel.findOneAndUpdate({ _id: id }, req.body, { new: true });
+                if (oneHotel) {
+                    res.status(200).json({
+                        success: true,
+                        message: 'Hotel updated succesfully',
+                        data: oneHotel,
+                    });
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: 'Hotel not found',
+                    });
+                }
+            } else {
+                res.status(403).json({
+                    success: false,
+                    message: "You can't update this hotel",
+                });
+            }
+        } catch (error) {
+            res.status(400).json({
+                success: false,
+                message: error.message,
+            });
+        }
+    },
+
+    destroy: async (req, res) => {
+        let { id } = req.params;
+
+        try {
+            let oneHotelFind = await modelHotel.findById(id)
+            if (oneHotelFind.userId.equals(req.user.id)) {
+                let hotel = await modelHotel.findOneAndDelete({ _id: id });
+                if (hotel) {
+                    res.status(200).json({
+                        success: true,
+                        message: 'Hotel deleted',
+                        data: hotel,
+                    });
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: 'Hotel not found',
+                    });
+                }
+            } else {
+                res.status(403).json({
+                    success: false,
+                    message: "You can't delete this hotel",
+                });
+            }
+        } catch (error) {
+            res.status(400).json({
+                success: false,
+                message: error.message,
+            });
+        }
+    },
+    
+   
 }
 
 
