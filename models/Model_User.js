@@ -9,9 +9,9 @@ const schema_user = new mongoose.Schema({
     email: {type:String , require:true}, 
     password: {type:String , require:true}, 
     country: {type:String , require:true}, 
-    code:  {type:String , require:true},
     verified:  {type:Boolean , require:true},
     logged: {type:Boolean , require:true}, 
+    code:  {type:String , require:true},
 })
 
 const model_user = mongoose.model('users', schema_user);

@@ -67,18 +67,26 @@ const controller = {
     update: async(req,res) => {
         let { id } = req.params
         try{
-            let oneCity = await City.findOneAndUpdate({ _id: id }, req.body,{new: true})
-            if (oneCity){
-                res.status(200).json({
-                    id: oneCity._id,
-                    success: true,
-                    message: "Great! You have modified the city"
-                })
+            let oneItId = await City.findById(id)
+            if (oneItId.userId.equals(req.user.id)) {
+                let oneCity = await City.findOneAndUpdate({ _id: id }, req.body,{new: true})
+                if (oneCity){
+                    res.status(200).json({
+                        id: oneCity._id,
+                        success: true,
+                        message: "Great! You have modified the city"
+                    })
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: "Ooops, some info is wrong. Try again!"
+                    })
+                }
             } else {
-                res.status(404).json({
+                res.status(401).json({
                     success: false,
-                    message: "Ooops, some info is wrong. Try again!"
-                })
+                    message: 'You are not authorized to edit this city',
+                });
             }
         } catch (error){
             res.status(400).json({
@@ -90,17 +98,25 @@ const controller = {
     destroy: async(req,res) => {
         let { id } = req.params
         try{
-            let oneCity = await City.findOneAndDelete({ _id: id })
-            if (oneCity){
-                res.status(200).json({
-                    success: true,
-                    message: "Ok. City was deleted succesfully."
-                })
+            let oneItId = await City.findById(id)
+            if (oneItId.userId.equals(req.user.id)) {
+                let oneCity = await City.findOneAndDelete({ _id: id })
+                if (oneCity){
+                    res.status(200).json({
+                        success: true,
+                        message: "Ok. City was deleted succesfully."
+                    })
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: "I'm sorry! Cannot find that city"
+                    })
+                }
             } else {
-                res.status(404).json({
+                res.status(401).json({
                     success: false,
-                    message: "I'm sorry! Cannot find that city"
-                })
+                    message: 'You are not authorized to delete this city',
+                });
             }
         } catch (error){
             res.status(400).json({

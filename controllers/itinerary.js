@@ -49,18 +49,26 @@ const controller = {
     update: async(req,res) => {
         let { id } = req.params
         try{
-            let oneIt = await Itinerary.findOneAndUpdate({ _id: id }, req.body, {new: true})
-            if (oneIt){
-                res.status(200).json({
-                    id: oneIt._id,
-                    success: true,
-                    message: "Well done! You have modified the itinerary"
-                })
+            let oneItId = await Itinerary.findById(id)
+            if (oneItId.userId.equals(req.user.id)) {
+                let oneIt = await Itinerary.findOneAndUpdate({ _id: id }, req.body, {new: true})
+                if (oneIt){
+                    res.status(200).json({
+                        id: oneIt._id,
+                        success: true,
+                        message: "Well done! You have modified the itinerary"
+                    })
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: "Oh, some info is wrong. Try again!"
+                    })
+                }
             } else {
-                res.status(404).json({
+                res.status(401).json({
                     success: false,
-                    message: "Oh, some info is wrong. Try again!"
-                })
+                    message: 'You are not authorized to edit this tinerary',
+                });
             }
         } catch (error) {
             res.status(400).json({
@@ -73,17 +81,25 @@ const controller = {
     destroy: async(req,res) => {
         let { id } = req.params
         try{
-            let oneIt = await Itinerary.findOneAndDelete({ _id: id })
-            if (oneIt){
-                res.status(200).json({
-                    success: true,
-                    message: "The itinerary was deleted with success"
-                })
+            let oneItId = await Itinerary.findById(id)
+            if (oneItId.userId.equals(req.user.id)) {
+                let oneIt = await Itinerary.findOneAndDelete({ _id: id })
+                if (oneIt){
+                    res.status(200).json({
+                        success: true,
+                        message: "The itinerary was deleted with success"
+                    })
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: "Couldn't find that itinerary. Try again!"
+                    })
+                }
             } else {
-                res.status(404).json({
+                res.status(401).json({
                     success: false,
-                    message: "Couldn't find that itinerary. Try again!"
-                })
+                    message: 'You are not authorized to delete this tinerary',
+                });
             }
         } catch (error) {
             res.status(400).json({
