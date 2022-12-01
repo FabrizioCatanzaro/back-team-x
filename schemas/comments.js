@@ -5,7 +5,7 @@ const schemaComments = joi.object({
     .string()
     .required()
     .min(3)
-    .max(50)
+    .max(100)
     .messages({
         "string.empty": "Can't send empty field",
         "string.base": "The field must be a word not numbers or symbols",
@@ -14,7 +14,6 @@ const schemaComments = joi.object({
     }),
     showId: joi
     .string()
-    .required()
     .max(30)
     .messages({
         "string.empty": "Can't send empty field",
