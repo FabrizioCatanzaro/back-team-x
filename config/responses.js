@@ -47,6 +47,13 @@ function verifyResponse(req,res) {
     })
 }
 
+function unableToDeleteReactions(req,res){
+    return res.status(401).json({
+        success: false,
+        message: 'You are unauthorized to delete his / her reactions',
+    })
+}
+
 module.exports = {
     userSignedUpResponse,
     userExistsResponse,
@@ -54,5 +61,6 @@ module.exports = {
     userSignedOutResponse,
     mustSignInResponse,
     invalidCredentialsResponse,
-    verifyResponse
+    verifyResponse,
+    unableToDeleteReactions
 }

@@ -78,7 +78,7 @@ const controller = {
             query = { itineraryId: req.query.itineraryId };
         }
         try {
-            let reactions = await Reaction.find(query).populate({ path: 'userId', select: 'name lastName photo' })
+            let reactions = await Reaction.find(query).populate({ path: 'userId', select: 'name'})
             if (reactions.length > 0) {
 
                 let howManyReactions = {}
@@ -106,6 +106,56 @@ const controller = {
             })
         }
     },
-}
+
+    readMyReactions: async (req, res) => {
+        let query = {};
+        let {id} = req.user
+        if (req.query.userId) {
+            query = { userId: req.query.userId };
+        }
+        try {
+            let reactions = await Reaction.find(query)
+                res.status(200).json({
+                    data: reactions,
+                    id: req.query.userId,
+                    success: true,
+                    message: `These are all the reactions belonging to ${req.query.userId}`,
+                })
+        } catch (error) {
+            res.status(400).json({
+                success: false,
+                message: error.message,
+                data: error
+            })
+        }
+    },
+
+    deleteMyReaction: async(req,res) => {
+        let { id } = req.params
+        let myId = req.user.id
+        //console.log("RES", res)
+        //console.log("REQ", req.user)
+        try{
+            let delReaction = await Reaction.findOneAndUpdate({ _id: id },{ $pull: { userId: myId } }, { new: true })
+            if (delReaction){
+                res.status(200).json({
+                    success: true,
+                    message: "Reaction was deleted succesfully."
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "I'm sorry! Cannot find that reaction"
+                })
+            }
+        } catch (error){
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
+        }
+    },
+    }
+
 
 module.exports = controller
