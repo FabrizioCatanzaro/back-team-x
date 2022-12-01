@@ -1,4 +1,3 @@
-const { query } = require('express');
 const modelHotel = require('../models/Model_Hotel');
 
 const hotelController = {
