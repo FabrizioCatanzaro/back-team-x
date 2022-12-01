@@ -6,8 +6,8 @@ let schema = require('../schemas/reaction')
 let middlewareDel = require('../middlewares/middlewareDel')
 
 router.post('/', validator(schema), passport.authenticate("jwt", { session: false }), create)
-//router.put('/', passport.authenticate("jwt", { session: false }), updateReaction)
-//router.get('/', read)
-router.get('/', passport.authenticate("jwt", { session: false }),readMyReactions)
+router.put('/', passport.authenticate("jwt", { session: false }), updateReaction)
+router.get('/',passport.authenticate("jwt", { session: false }), read)
+//router.get('/', ,readMyReactions)
 router.put('/:id', passport.authenticate("jwt", { session: false }), middlewareDel, deleteMyReaction)
 module.exports = router

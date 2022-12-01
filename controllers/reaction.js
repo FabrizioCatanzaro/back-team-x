@@ -77,26 +77,39 @@ const controller = {
         if (req.query.itineraryId) {
             query = { itineraryId: req.query.itineraryId };
         }
+        if (req.query.userId) {
+            query = { userId: req.query.userId };
+        }
         try {
-            let reactions = await Reaction.find(query).populate({ path: 'userId', select: 'name'})
-            if (reactions.length > 0) {
-
-                let howManyReactions = {}
-                reactions.forEach(reaction => howManyReactions[reaction.name] = reaction.userId.length)
-
+            if (req.query.itineraryId){
+                let reactions = await Reaction.find(query).populate({ path: 'userId', select: 'name'})
+                if (reactions.length > 0) {
+    
+                    let howManyReactions = {}
+                    reactions.forEach(reaction => howManyReactions[reaction.name] = reaction.userId.length)
+    
+                    res.status(200).json({
+                        howManyReactions,
+                        data: reactions,
+                        id: req.query.itineraryId,
+                        success: true,
+                        message: `These are all the reactions belonging to ${req.query.itineraryId}`,
+                    })
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: "Couldn't find reactions",
+                        data: [],
+                    });
+                }
+            } else if(req.query.userId){
+                let reactions = await Reaction.find(query)
                 res.status(200).json({
-                    howManyReactions,
                     data: reactions,
-                    id: req.query.itineraryId,
+                    id: req.query.userId,
                     success: true,
-                    message: `These are all the reactions belonging to ${req.query.itineraryId}`,
+                    message: `These are all the reactions belonging to ${req.query.userId}`,
                 })
-            } else {
-                res.status(404).json({
-                    success: false,
-                    message: "Couldn't find reactions",
-                    data: [],
-                });
             }
         } catch (error) {
             res.status(400).json({
@@ -107,7 +120,7 @@ const controller = {
         }
     },
 
-    readMyReactions: async (req, res) => {
+    /* readMyReactions: async (req, res) => {
         let query = {};
         let {id} = req.user
         if (req.query.userId) {
@@ -128,13 +141,11 @@ const controller = {
                 data: error
             })
         }
-    },
+    }, */
 
     deleteMyReaction: async(req,res) => {
         let { id } = req.params
         let myId = req.user.id
-        //console.log("RES", res)
-        //console.log("REQ", req.user)
         try{
             let delReaction = await Reaction.findOneAndUpdate({ _id: id },{ $pull: { userId: myId } }, { new: true })
             if (delReaction){
