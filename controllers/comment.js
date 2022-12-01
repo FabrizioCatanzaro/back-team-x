@@ -7,10 +7,15 @@ const commentController = {
             showId:req.body.showId,
             userId:req.user.id,
             date:req.body.date,
-            comment:req.body.comment
+            comment:req.body.comment,
+            name:req.user.name,
+            photo:req.user.photo,
         }        
+
+        console.log(req.body)
+        console.log(req.user)
         try{
-            let new_comment = await model_comment.create(user)
+            let new_comment = await (await model_comment.create(user))
             res.status(201).json({
                 success:true,
                 message:'Comment Created',

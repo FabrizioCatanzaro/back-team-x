@@ -28,7 +28,7 @@ const schemaComments = joi.object({
         "string.empty": "Can't send empty field",
         "string.base": "The field must be a word not numbers or symbols",
         "string.max": "Date dont have be more than 50 characters"
-    })
+    }),
 })
 
 module.exports = schemaComments
