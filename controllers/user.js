@@ -79,7 +79,7 @@ const controller = {
 
     accessWithToken: async(req,res,next) =>{
         let { user } = req
-        console.log("ACCES WIT TOJKENB",user)
+        //console.log("ACCESS WITH TOKEN",user)
         try{
             return res.json({
                 response:{

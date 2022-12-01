@@ -11,7 +11,7 @@ passport.use(
             secretOrKey: KEY_JWT
         },
         async (jwt_payload, done) =>{
-            console.log("JWT PAYLOAD",jwt_payload)
+            //console.log("JWT PAYLOAD",jwt_payload)
             try{
                 let user = await User.findOne({ _id:jwt_payload.id })
                 //console.log("USER DE PASSPORT",user)
