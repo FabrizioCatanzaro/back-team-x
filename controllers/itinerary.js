@@ -107,7 +107,30 @@ const controller = {
                 message: error.message
             })
         }
-    }
+    },
+    readOne: async(req,res) => {
+        let { id } = req.params
+        try{
+            let oneItinerary = await Itinerary.find({ _id: id })
+            if(oneItinerary){
+                res.status(200).json({
+                    response: oneItinerary,
+                    success: true,
+                    message: "A city was obtain"
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "There are no cities"
+                })
+            }
+        } catch (error){
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
+        }
+    },
 }
 
 module.exports = controller
