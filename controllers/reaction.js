@@ -77,27 +77,31 @@ const controller = {
         if (req.query.itineraryId) {
             query = { itineraryId: req.query.itineraryId };
         }
+        if (req.query.userId) {
+            query = { userId: req.query.userId };
+        }
         try {
-            let reactions = await Reaction.find(query).populate({ path: 'userId', select: 'name lastName photo' })
-            if (reactions.length > 0) {
-
-                let howManyReactions = {}
-                reactions.forEach(reaction => howManyReactions[reaction.name] = reaction.userId.length)
-
-                res.status(200).json({
-                    howManyReactions,
-                    data: reactions,
-                    id: req.query.itineraryId,
-                    success: true,
-                    message: `These are all the reactions belonging to ${req.query.itineraryId}`,
-                })
-            } else {
-                res.status(404).json({
-                    success: false,
-                    message: "Couldn't find reactions",
-                    data: [],
-                });
-            }
+                let reactions = await Reaction.find(query)
+                    .populate({ path: 'userId', select: 'name photo'})
+                    .populate({ path: 'itineraryId', select: 'name photo'})
+                
+                if (reactions.length > 0) {
+                    let howManyReactions = {}
+                    reactions.forEach(reaction => howManyReactions[reaction.name] = reaction.userId.length)
+                    res.status(200).json({
+                        howManyReactions,
+                        data: reactions,
+                        id: req.query.itineraryId,
+                        success: true,
+                        message: `These are all the reactions belonging to ${req.query.itineraryId}`,
+                    })
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: "Couldn't find reactions",
+                        data: [],
+                    });
+                }
         } catch (error) {
             res.status(400).json({
                 success: false,
@@ -106,6 +110,32 @@ const controller = {
             })
         }
     },
-}
+
+    deleteMyReaction: async(req,res) => {
+        let { id } = req.params
+        let myId = req.user.id
+        try{
+            let delReaction = await Reaction.findOneAndUpdate({ _id: id },{ $pull: { userId: myId } }, { new: true })
+            if (delReaction){
+                res.status(200).json({
+                    success: true,
+                    message: "Reaction was deleted succesfully.",
+                    response: delReaction,
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "I'm sorry! Cannot find that reaction"
+                })
+            }
+        } catch (error){
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
+        }
+    },
+    }
+
 
 module.exports = controller

@@ -47,6 +47,12 @@ function verifyResponse(req,res) {
     })
 }
 
+function unableToDeleteReactions(req,res){
+    return res.status(401).json({
+        success: false,
+        message: 'You are unauthorized to delete his / her reactions',
+    })
+}
 function mustBeTheOwner(req, res) {
     return res.status(401).json({
       success: false,
@@ -69,6 +75,7 @@ module.exports = {
     mustSignInResponse,
     invalidCredentialsResponse,
     verifyResponse,
+    unableToDeleteReactions,
     mustBeTheOwner,
     activityNotFound,
 }
