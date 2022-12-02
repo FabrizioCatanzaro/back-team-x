@@ -7,14 +7,16 @@ const commentController = {
             showId:req.body.showId,
             userId:req.user.id,
             date:req.body.date,
-            comment:req.body.comment
-        }
+            comment:req.body.comment,
+            name:req.user.name,
+            photo:req.user.photo,
+            itineraryId:req.body.itineraryId,
+        }        
 
         console.log(req.body)
         console.log(req.user)
-        
         try{
-            let new_comment = await model_comment.create(user)
+            let new_comment = await (await model_comment.create(user))
             res.status(201).json({
                 success:true,
                 message:'Comment Created',
@@ -33,7 +35,7 @@ const commentController = {
         let order = {}
      
         if(req.query.order){
-            order = {capacity: req.query.order}
+            order = {date: req.query.order}
         }
 
         if(req.query.showId){
@@ -41,6 +43,12 @@ const commentController = {
             ...query,
             showId:req.query.showId
         }}
+
+        if(req.query.itineraryId){
+          query = {
+          ...query,
+          itineraryId:req.query.itineraryId
+      }}
 
         try{
             let comment_find = await model_comment.find(query).sort(order)
@@ -55,7 +63,57 @@ const commentController = {
                 message:'Comment nos found. Try again'
             })
         } 
-    }
+    },
+
+    update: async (req, res) => {
+        let { id } = req.params;
+        try {
+          let one = await model_comment.findOneAndUpdate({ _id: id }, req.body, {new: true});
+          if (one) {
+            res.status(200).json({
+              id: one._id,
+              success: true,
+              message: "The comment was successfully modified",
+            });
+          } else {
+            res.status(404).json({
+              success: false,
+              message: "The comment was not found",
+            });
+          }
+        } catch (error) {
+          res.status(400).json({
+            success: false,
+            message: error.message,
+          });
+        }
+      },
+    
+      destroy: async (req, res) => {
+        let {id} = req.params
+        try {
+          let comment = await model_comment.findOneAndDelete({_id:id})
+          if(comment){
+            res.status(200).json({
+              res: comment,
+              success:true,
+              message: "The comment was successfully deleted"
+            })
+           
+          }else{
+            res.status(404).json({
+              res: comment,
+              success:false,
+              message: "The comment was not found"
+            })
+          }
+        } catch (error) {
+          res.status(400).json({
+            success: false,
+            message: error.message,
+          });
+        }
+      },
 
 }
 

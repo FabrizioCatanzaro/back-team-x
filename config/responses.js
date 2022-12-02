@@ -47,6 +47,20 @@ function verifyResponse(req,res) {
     })
 }
 
+function mustBeTheOwner(req, res) {
+    return res.status(401).json({
+      success: false,
+      message: "You must be the owner to carry out this operation",
+    });
+  }
+
+  function activityNotFound(req, res) {
+    return res.status(404).json({
+      success: false,
+      message: "Couldn't find the activity",
+    });
+  }
+
 module.exports = {
     userSignedUpResponse,
     userExistsResponse,
@@ -54,5 +68,7 @@ module.exports = {
     userSignedOutResponse,
     mustSignInResponse,
     invalidCredentialsResponse,
-    verifyResponse
+    verifyResponse,
+    mustBeTheOwner,
+    activityNotFound,
 }
