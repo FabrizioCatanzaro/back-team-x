@@ -81,13 +81,13 @@ const controller = {
             query = { userId: req.query.userId };
         }
         try {
-            if (req.query.itineraryId){
-                let reactions = await Reaction.find(query).populate({ path: 'userId', select: 'name'})
+                let reactions = await Reaction.find(query)
+                    .populate({ path: 'userId', select: 'name photo'})
+                    .populate({ path: 'itineraryId', select: 'name photo'})
+                
                 if (reactions.length > 0) {
-    
                     let howManyReactions = {}
                     reactions.forEach(reaction => howManyReactions[reaction.name] = reaction.userId.length)
-    
                     res.status(200).json({
                         howManyReactions,
                         data: reactions,
@@ -102,15 +102,6 @@ const controller = {
                         data: [],
                     });
                 }
-            } else if(req.query.userId){
-                let reactions = await Reaction.find(query)
-                res.status(200).json({
-                    data: reactions,
-                    id: req.query.userId,
-                    success: true,
-                    message: `These are all the reactions belonging to ${req.query.userId}`,
-                })
-            }
         } catch (error) {
             res.status(400).json({
                 success: false,
@@ -120,29 +111,6 @@ const controller = {
         }
     },
 
-    /* readMyReactions: async (req, res) => {
-        let query = {};
-        let {id} = req.user
-        if (req.query.userId) {
-            query = { userId: req.query.userId };
-        }
-        try {
-            let reactions = await Reaction.find(query)
-                res.status(200).json({
-                    data: reactions,
-                    id: req.query.userId,
-                    success: true,
-                    message: `These are all the reactions belonging to ${req.query.userId}`,
-                })
-        } catch (error) {
-            res.status(400).json({
-                success: false,
-                message: error.message,
-                data: error
-            })
-        }
-    }, */
-
     deleteMyReaction: async(req,res) => {
         let { id } = req.params
         let myId = req.user.id
@@ -151,7 +119,8 @@ const controller = {
             if (delReaction){
                 res.status(200).json({
                     success: true,
-                    message: "Reaction was deleted succesfully."
+                    message: "Reaction was deleted succesfully.",
+                    response: delReaction,
                 })
             } else {
                 res.status(404).json({
