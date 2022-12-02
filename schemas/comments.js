@@ -29,6 +29,7 @@ const schemaComments = joi.object({
         "string.base": "The field must be a word not numbers or symbols",
         "string.max": "Date dont have be more than 50 characters"
     }),
+    itineraryId: joi.any()
 })
 
 module.exports = schemaComments

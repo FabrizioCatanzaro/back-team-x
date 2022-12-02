@@ -10,6 +10,7 @@ const commentController = {
             comment:req.body.comment,
             name:req.user.name,
             photo:req.user.photo,
+            itineraryId:req.body.itineraryId,
         }        
 
         console.log(req.body)
@@ -34,7 +35,7 @@ const commentController = {
         let order = {}
      
         if(req.query.order){
-            order = {capacity: req.query.order}
+            order = {date: req.query.order}
         }
 
         if(req.query.showId){
@@ -42,6 +43,12 @@ const commentController = {
             ...query,
             showId:req.query.showId
         }}
+
+        if(req.query.itineraryId){
+          query = {
+          ...query,
+          itineraryId:req.query.itineraryId
+      }}
 
         try{
             let comment_find = await model_comment.find(query).sort(order)
